@@ -1,3 +1,6 @@
+# veterans-health
+UMGC Group Capstone Course Project - CMSC 495 6380
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
