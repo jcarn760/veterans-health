@@ -1,5 +1,6 @@
 # veterans-health
 UMGC Group Capstone Course Project - CMSC 495 6380
+Group 5 - Josh, Dustin, Roger
 
 # Getting Started with Create React App
 
