@@ -6,6 +6,10 @@ Each time we begin working on a new issue, please be sure to look on the right-h
 
 We will be using Javascript for our React Frontend
 
+## Material UI
+using material UI for front end component building
+https://mui.com/material-ui/getting-started/
+
 # Git Best Practices
 
 Ensure to commit work done regularly to not lose any work done
