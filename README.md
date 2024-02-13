@@ -2,7 +2,7 @@
 UMGC Group Capstone Course Project - CMSC 495 6380
 Group 5 - Josh, Dustin, Roger
 
-Each time we begin working on a new issue, please be sure to look on the right-hand side menu -> under Development create a new branch and then in your terminal git fetch origin -> git checkout <branch name>
+Each time we begin working on a new issue, please be sure to look on the right-hand side menu -> under Development create a new branch and then in your terminal git fetch origin -> git checkout -branch name-
 
 # Git Best Practices
 
@@ -11,7 +11,7 @@ Ensure to commit work done regularly to not lose any work done
 Ensure to git fetch and git pull regularly to ensure you are working with the most recent version of code 
 this is especially important each time that we merge a branch into main.
 
-Each time that we merge into main and you are still working on an issue -> git fetch origin -> git checkout main -> git pull -> git checkout <your current branch> -> git merge main -> resolve any potential merge conflicts or reach out for assistance
+Each time that we merge into main and you are still working on an issue -> git fetch origin -> git checkout main -> git pull -> git checkout -your current branch- -> git merge main -> resolve any potential merge conflicts or reach out for assistance
 
 Please reach out to team members if anything comes up or you have any blockers (things keeping you from working on your issue)
 
