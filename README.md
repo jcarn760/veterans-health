@@ -4,6 +4,8 @@ Group 5 - Josh, Dustin, Roger
 
 Each time we begin working on a new issue, please be sure to look on the right-hand side menu -> under Development create a new branch and then in your terminal git fetch origin -> git checkout -branch name-
 
+We will be using Javascript for our React Frontend
+
 # Git Best Practices
 
 Ensure to commit work done regularly to not lose any work done
