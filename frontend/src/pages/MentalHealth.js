@@ -7,19 +7,17 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Box, Grid } from '@mui/material';
+import VetImage from "../components/images/cards/veteransTalking.jpg"
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -30,7 +28,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export  function MentalHealth() {
+export function MentalHealth() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -38,32 +36,36 @@ export  function MentalHealth() {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Box 
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      overflow:'auto'
+    }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={4}>
+        <Card sx={{ maxWidth: 345}}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
+       
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title="What is Combat Stress?"
+        subheader="Understanding Causes, Signs, and Treatment"
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={VetImage}
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+        Post-traumatic stress disorder (PTSD) is a diagnosed condition that can develop after a person is exposed to a traumatic event. PTSD is a very common condition for many veterans after military service. Symptoms can include disturbing thoughts, feelings, or dreams related to the events, mental or physical distress, difficulty sleeping, and changes in how a person thinks and feels.
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -84,19 +86,15 @@ export  function MentalHealth() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>What Causes PTSD?</Typography>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
+          PTSD can occur after witnessing or experiencing a traumatic event. For veterans, this can stem from combat, training, or military sexual trauma.
           </Typography>
+          <Typography paragraph>PTSD Symptoms</Typography>
           <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+          According to the National Institute of Mental Health, there are four types of symptoms:
+
+
           </Typography>
           <Typography paragraph>
             Add rice and stir very gently to distribute. Top with artichokes and
@@ -112,14 +110,10 @@ export  function MentalHealth() {
         </CardContent>
       </Collapse>
     </Card>
+        </Grid>
+      </Grid>
+    
+    </Box>
+    
   );
 }
-
-// export const MentalHealth = () => {
-
-//     return (
-//         <>
-//             This is the MH Page
-//         </>
-//     )
-// }
