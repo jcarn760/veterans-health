@@ -4,7 +4,7 @@ export const MentalHealth = () => {
 
     return (
         <>
-            Therapy helps
+           This is the Mental HEalth 
         </>
     )
 }
