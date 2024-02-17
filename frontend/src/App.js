@@ -10,7 +10,7 @@ import { Home } from "./pages/Home";
 import { PrivateRoutes } from "./components/Routes/PrivateRoutes";
 import { Account } from "./pages/Account";
 import { MentalHealth } from "./pages/MentalHealth";
-import { Feedback } from "./pages/Feedback";
+import  Feedback  from "./pages/Feedback";
 import { Workouts } from "./pages/Workouts";
 import { NothingHere } from "./pages/404";
 import { LandingPage } from "./pages/LandingPage";
