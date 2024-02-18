@@ -21,6 +21,7 @@ export const App = () => {
     <div className="App">
       <Router>
         <ClippedDrawer />
+        <div style={{ marginLeft: '250px', width: 'calc(100% - 250px)' }}>
         <Routes>
           <Route index path="/" element={<LandingPage />} />
           <Route exact path="/register" element={<Register />} />
@@ -34,6 +35,7 @@ export const App = () => {
           </Route>
           <Route path="*" element={<NothingHere />} />
         </Routes>
+        </div>
       </Router>
     </div>
   );
