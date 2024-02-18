@@ -11,7 +11,7 @@ const Workout = () => {
       url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
       params: {type: 'cardio'},
       headers: {
-        'X-RapidAPI-Key': '5a1f171a06msh479624660c5a42dp13186ajsnef6f6874de30',
+        'X-RapidAPI-Key': 'API KEY',
         'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
       }
     };
