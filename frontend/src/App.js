@@ -10,7 +10,7 @@ import { Home } from "./pages/Home";
 import { PrivateRoutes } from "./components/Routes/PrivateRoutes";
 import { Account } from "./pages/Account";
 import { MentalHealth } from "./pages/MentalHealth";
-import { Feedback } from "./pages/Feedback";
+import  Feedback  from "./pages/Feedback";
 import { Workouts } from "./pages/Workouts";
 import { NothingHere } from "./pages/404";
 import { LandingPage } from "./pages/LandingPage";
@@ -21,6 +21,7 @@ export const App = () => {
     <div className="App">
       <Router>
         <ClippedDrawer />
+        <div style={{ marginLeft: '250px', width: 'calc(100% - 250px)' }}>
         <Routes>
           <Route index path="/" element={<LandingPage />} />
           <Route exact path="/register" element={<Register />} />
@@ -34,6 +35,7 @@ export const App = () => {
           </Route>
           <Route path="*" element={<NothingHere />} />
         </Routes>
+        </div>
       </Router>
     </div>
   );
