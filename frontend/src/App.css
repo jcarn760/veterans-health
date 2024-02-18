@@ -1,5 +1,14 @@
+body {
+  background: #BAD5ec;
+}
+
+html {
+  background: #BAD5ec;
+}
+
 .App {
   text-align: center;
+  background: #BAD5ec;
 }
 
 .App-logo {

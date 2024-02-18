@@ -4,8 +4,8 @@ import Drawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -44,7 +44,7 @@ export default function ClippedDrawer() {
               </Typography>
             </Stack>
           </RouterLink>
-          </Toolbar>
+        </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
@@ -127,26 +127,28 @@ export default function ClippedDrawer() {
             </RouterLink>
           </List>
           <Divider />
-          <Box pt="30px" >
-            <ButtonGroup orientation="vertical" variant="contained" >
-                <RouterLink
-                    style={{ textDecoration: "none", color: "inherit" }}
-                    to="/login"
-                >
-                    <Button fullWidth="100%">Login</Button>
-                </RouterLink>
-                <RouterLink
-                    style={{ textDecoration: "none", color: "inherit" }}
-                    to="/"
-                >
-                    <Button color="secondary" fullWidth="100%">Logout</Button>
-                </RouterLink>
-                <RouterLink
-                    style={{ textDecoration: "none", color: "inherit" }}
-                    to="/register"
-                >
-                    <Button fullWidth="100%">Register</Button>
-                </RouterLink>
+          <Box pt="30px">
+            <ButtonGroup orientation="vertical" variant="contained">
+              <RouterLink
+                style={{ textDecoration: "none", color: "inherit" }}
+                to="/login"
+              >
+                <Button fullWidth="100%">Login</Button>
+              </RouterLink>
+              <RouterLink
+                style={{ textDecoration: "none", color: "inherit" }}
+                to="/"
+              >
+                <Button color="secondary" fullWidth="100%">
+                  Logout
+                </Button>
+              </RouterLink>
+              <RouterLink
+                style={{ textDecoration: "none", color: "inherit" }}
+                to="/register"
+              >
+                <Button fullWidth="100%">Register</Button>
+              </RouterLink>
             </ButtonGroup>
           </Box>
         </Box>
