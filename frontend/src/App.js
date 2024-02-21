@@ -11,10 +11,16 @@ import { PrivateRoutes } from "./components/Routes/PrivateRoutes";
 import { Account } from "./pages/Account";
 import { MentalHealth } from "./pages/MentalHealth";
 import  Feedback  from "./pages/Feedback";
-import { Workouts } from "./pages/Workouts";
+import  Workouts  from "./pages/Workouts/Workouts";
 import { NothingHere } from "./pages/404";
 import { LandingPage } from "./pages/LandingPage";
 import { Register } from "./pages/Register";
+import Cardio from "./pages/Workouts/Cardio";
+import Plyometrics from "./pages/Workouts/Plyometrics";
+import Strenght from "./pages/Workouts/Strenght";
+import Stretching from "./pages/Workouts/Stretching";
+
+
 
 export const App = () => {
   return (
@@ -32,6 +38,10 @@ export const App = () => {
             <Route exact path="/mental_health" element={<MentalHealth />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/workouts" element={<Workouts />} />
+            <Route exact path="/cardio" element={<Cardio/>} />
+            <Route exact path="/plyometrics" element={<Plyometrics/>} />
+            <Route exact path="/strenght" element={<Strenght/>} />
+            <Route exact path="/stretching" element={<Stretching/>} />
           </Route>
           <Route path="*" element={<NothingHere />} />
         </Routes>
