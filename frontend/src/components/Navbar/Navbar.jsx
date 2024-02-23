@@ -21,8 +21,17 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import Stack from "@mui/material/Stack";
 import { NavLink as RouterLink, useNavigate } from "react-router-dom";
+import { signOut } from "aws-amplify/auth";
 
 const drawerWidth = 240;
+
+async function handleSignOut() {
+  try {
+    await signOut();
+  } catch (error) {
+    console.log("error signing out: ", error);
+  }
+}
 
 export default function ClippedDrawer() {
   return (
@@ -139,7 +148,11 @@ export default function ClippedDrawer() {
                 style={{ textDecoration: "none", color: "inherit" }}
                 to="/"
               >
-                <Button color="secondary" fullWidth="100%">
+                <Button
+                  color="secondary"
+                  fullWidth="100%"
+                  onClick={handleSignOut}
+                >
                   Logout
                 </Button>
               </RouterLink>
@@ -153,9 +166,8 @@ export default function ClippedDrawer() {
           </Box>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3,  }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-       
       </Box>
     </Box>
   );
