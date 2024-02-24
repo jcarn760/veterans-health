@@ -72,8 +72,8 @@ export const Home = () => {
   return (
     <>
       <Box>
-        <Box>
-          <Typography variant="h3">Hello! (user)</Typography>
+        <Box textAlign="center">
+          <Typography variant="h3">Hello!</Typography>
           <Typography variant="h6">How are you feeling today?</Typography>
         </Box>
         <Stack>

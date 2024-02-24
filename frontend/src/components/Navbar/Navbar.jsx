@@ -121,26 +121,13 @@ export default function ClippedDrawer() {
                 </ListItemButton>
               </ListItem>
             </RouterLink>
-            <RouterLink
-              style={{ textDecoration: "none", color: "inherit" }}
-              to="/account"
-            >
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Account" />
-                </ListItemButton>
-              </ListItem>
-            </RouterLink>
           </List>
           <Divider />
-          <Box pt="30px">
+          <Box pt="30px" pl="30%">
             <ButtonGroup orientation="vertical" variant="contained">
               <RouterLink
                 style={{ textDecoration: "none", color: "inherit" }}
-                to="/login"
+                to="/auth"
               >
                 <Button fullWidth="100%">Login</Button>
               </RouterLink>
@@ -158,7 +145,7 @@ export default function ClippedDrawer() {
               </RouterLink>
               <RouterLink
                 style={{ textDecoration: "none", color: "inherit" }}
-                to="/register"
+                to="/auth"
               >
                 <Button fullWidth="100%">Register</Button>
               </RouterLink>

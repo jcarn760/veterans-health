@@ -9,7 +9,7 @@ import { NavLink as RouterLink, useNavigate } from "react-router-dom";
 export const LandingPage = () => {
   return (
     <>
-      <Stack direction="row" spacing="20px">
+      <Stack direction="row" spacing="20px" paddingTop="15%">
         <img
           width="50%"
           src={LandingPageImage}
@@ -27,10 +27,10 @@ export const LandingPage = () => {
             Get started by registering or logging in below.
           </Typography>
           <Stack direction="row" pt="12%" pl="33%" spacing="10px">
-            <RouterLink to="/login">
+            <RouterLink to="/auth">
               <Button variant="contained">Login</Button>
             </RouterLink>
-            <RouterLink to="register">
+            <RouterLink to="/auth">
               <Button variant="contained">Sign Up</Button>
             </RouterLink>
           </Stack>

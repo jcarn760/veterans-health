@@ -7,7 +7,6 @@ import ClippedDrawer from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Home } from "./pages/Home";
-import { Account } from "./pages/Account";
 import { MentalHealth } from "./pages/MentalHealth";
 import Feedback from "./pages/Feedback";
 import Workouts from "./pages/Workouts/Workouts";
@@ -21,7 +20,6 @@ import Stretching from "./pages/Workouts/Stretching";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
-import { ProtectedRoutes } from "./components/ProtectedRoute";
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsExports);
@@ -29,9 +27,9 @@ Amplify.configure(awsExports);
 const ProtectedApp = ({ signOut }) => {
   return (
     <>
+      <ClippedDrawer />
       <Routes>
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/account" element={<Account />} />
         <Route exact path="/mental_health" element={<MentalHealth />} />
         <Route exact path="/feedback" element={<Feedback />} />
         <Route exact path="/workouts" element={<Workouts />} />
@@ -39,7 +37,6 @@ const ProtectedApp = ({ signOut }) => {
         <Route exact path="/plyometrics" element={<Plyometrics />} />
         <Route exact path="/strenght" element={<Strenght />} />
         <Route exact path="/stretching" element={<Stretching />} />
-        <Route path="*" element={<NothingHere />} />
       </Routes>
     </>
   );
