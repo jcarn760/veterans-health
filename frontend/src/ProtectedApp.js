@@ -22,17 +22,27 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import { ProtectedRoutes } from "./components/ProtectedRoute";
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsExports);
 
-export const App = ({ signOut }) => {
+const ProtectedApp = ({ signOut }) => {
   return (
     <>
       <Routes>
-        <Route index path="/" element={<LandingPage />} />
-        <Route exact path="/register" element={<Authenticator />} />
-        <Route exact path="/login" element={<Authenticator />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/account" element={<Account />} />
+        <Route exact path="/mental_health" element={<MentalHealth />} />
+        <Route exact path="/feedback" element={<Feedback />} />
+        <Route exact path="/workouts" element={<Workouts />} />
+        <Route exact path="/cardio" element={<Cardio />} />
+        <Route exact path="/plyometrics" element={<Plyometrics />} />
+        <Route exact path="/strenght" element={<Strenght />} />
+        <Route exact path="/stretching" element={<Stretching />} />
+        <Route path="*" element={<NothingHere />} />
       </Routes>
     </>
   );
 };
+
+export default withAuthenticator(ProtectedApp)
