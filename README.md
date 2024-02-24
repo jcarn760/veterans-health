@@ -6,6 +6,13 @@ Each time we begin working on a new issue, please be sure to look on the right-h
 
 We will be using Javascript for our React Frontend
 
+# To start up APP (Follow instructions here)
+
+- CD frontend
+- npm install
+- amplify init > dev > profiles > select your profile -- look up documentation on how to setup an amplify dev environment on your machine
+- npm start
+
 ## Material UI
 using material UI for front end component building
 https://mui.com/material-ui/getting-started/
