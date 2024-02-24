@@ -4,10 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Box} from '@mui/material';
-import CardioImg from "../../components/images/cards/Cardio.jpg"
-import PlyometricsImg from "../../components/images/cards/Plyometrics.jpg"
-import StrenghtImg from "../../components/images/cards/Strenght.jpg"
-import StretchingImg from "../../components/images/cards/Stretching.jpg"
+import CardioImg from "../../assets/Workouts/Cardio.jpg"
+import PlyometricsImg from "../../assets/Workouts/Plyometrics.jpg"
+import StrenghtImg from "../../assets/Workouts/Strenght.jpg"
+import StretchingImg from "../../assets/Workouts/Stretching.jpg"
 
 import { Lin, NavLink } from "react-router-dom";
 export default function MultiActionAreaCard() {

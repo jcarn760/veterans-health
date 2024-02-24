@@ -15,7 +15,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, Grid } from "@mui/material";
-import VetImage from "../components/images/cards/veteransTalking.jpg";
+import VetImage from "../assets/MentalHealth/veteransTalking.jpg";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
