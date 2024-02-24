@@ -33,7 +33,7 @@ async function handleSignOut() {
   }
 }
 
-export default function ClippedDrawer() {
+export default function ClippedDrawer({ signOut }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />

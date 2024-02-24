@@ -11,8 +11,9 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import { BrowserRouter } from "react-router-dom";
-import  ProtectedApp  from "./ProtectedApp";
+import ProtectedApp  from "./ProtectedApp";
 import ClippedDrawer from "./components/Navbar/Navbar";
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(awsExports);
 

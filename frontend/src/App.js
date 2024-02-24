@@ -11,10 +11,11 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import ProtectedApp from "./ProtectedApp";
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(awsExports);
 
-export const App = ({ signOut }) => {
+export const App = ({ signOut, user }) => {
   return (
     <>
       <Routes>
