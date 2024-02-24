@@ -21,10 +21,19 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import Stack from "@mui/material/Stack";
 import { NavLink as RouterLink, useNavigate } from "react-router-dom";
+import { signOut } from "aws-amplify/auth";
 
 const drawerWidth = 240;
 
-export default function ClippedDrawer() {
+async function handleSignOut() {
+  try {
+    await signOut();
+  } catch (error) {
+    console.log("error signing out: ", error);
+  }
+}
+
+export default function ClippedDrawer({ signOut }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -112,26 +121,13 @@ export default function ClippedDrawer() {
                 </ListItemButton>
               </ListItem>
             </RouterLink>
-            <RouterLink
-              style={{ textDecoration: "none", color: "inherit" }}
-              to="/account"
-            >
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Account" />
-                </ListItemButton>
-              </ListItem>
-            </RouterLink>
           </List>
           <Divider />
-          <Box pt="30px">
+          <Box pt="30px" pl="30%">
             <ButtonGroup orientation="vertical" variant="contained">
               <RouterLink
                 style={{ textDecoration: "none", color: "inherit" }}
-                to="/login"
+                to="/auth"
               >
                 <Button fullWidth="100%">Login</Button>
               </RouterLink>
@@ -139,13 +135,17 @@ export default function ClippedDrawer() {
                 style={{ textDecoration: "none", color: "inherit" }}
                 to="/"
               >
-                <Button color="secondary" fullWidth="100%">
+                <Button
+                  color="secondary"
+                  fullWidth="100%"
+                  onClick={handleSignOut}
+                >
                   Logout
                 </Button>
               </RouterLink>
               <RouterLink
                 style={{ textDecoration: "none", color: "inherit" }}
-                to="/register"
+                to="/auth"
               >
                 <Button fullWidth="100%">Register</Button>
               </RouterLink>
@@ -153,9 +153,8 @@ export default function ClippedDrawer() {
           </Box>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3,  }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-       
       </Box>
     </Box>
   );
