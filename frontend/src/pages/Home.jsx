@@ -118,7 +118,7 @@ export const Home = () => {
         query: createWorkout,
         variables: {
           input: {
-            workout: workoutInput,
+            workout: "hello",
           },
         },
       });

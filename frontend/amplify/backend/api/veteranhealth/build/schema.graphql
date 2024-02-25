@@ -1,4 +1,4 @@
-type Workout @aws_api_key @aws_cognito_user_pools {
+type Workout {
   id: ID!
   workout: String!
   description: String!
@@ -157,7 +157,7 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelWorkoutConnection @aws_api_key @aws_cognito_user_pools {
+type ModelWorkoutConnection {
   items: [Workout]!
   nextToken: String
 }
@@ -172,8 +172,8 @@ input ModelWorkoutFilterInput {
 }
 
 type Query {
-  getWorkout(id: ID!): Workout @aws_api_key @aws_cognito_user_pools
-  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection @aws_api_key @aws_cognito_user_pools
+  getWorkout(id: ID!): Workout
+  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection
 }
 
 input ModelWorkoutConditionInput {
@@ -215,7 +215,7 @@ input ModelSubscriptionWorkoutFilterInput {
 }
 
 type Subscription {
-  onCreateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["createWorkout"]) @aws_api_key @aws_cognito_user_pools
-  onUpdateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["updateWorkout"]) @aws_api_key @aws_cognito_user_pools
-  onDeleteWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["deleteWorkout"]) @aws_api_key @aws_cognito_user_pools
+  onCreateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["createWorkout"])
+  onUpdateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["updateWorkout"])
+  onDeleteWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["deleteWorkout"])
 }
