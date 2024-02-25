@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "veteranhealth",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authveteranhealth854bf56a",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-veteranhealth-dev-143511-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/8252debbc141fd0c74c54aaac70f9d645ba7d87f"
+}

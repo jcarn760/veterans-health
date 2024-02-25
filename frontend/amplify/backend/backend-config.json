@@ -1,18 +1,37 @@
 {
   "api": {
-    "vetHealthAPI": {
+    "veteranhealth": {
       "dependsOn": [
         {
           "attributes": [
-            "Name",
-            "Arn"
+            "UserPoolId"
           ],
-          "category": "function",
-          "resourceName": "workoutFunction"
+          "category": "auth",
+          "resourceName": "veteranhealth854bf56a"
         }
       ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "apiKeyConfig": {
+                "apiKeyExpirationDate": "2025-02-24T06:15:37.543Z",
+                "apiKeyExpirationDays": 365,
+                "description": "workout"
+              },
+              "authenticationType": "API_KEY"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authveteranhealth854bf56a"
+            }
+          }
+        }
+      },
       "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
+      "service": "AppSync"
     }
   },
   "auth": {
@@ -88,5 +107,6 @@
         }
       ]
     }
-  }
+  },
+  "storage": {}
 }

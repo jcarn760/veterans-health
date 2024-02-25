@@ -26,13 +26,10 @@ const awsmobile = {
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
     ],
-    "aws_cloud_logic_custom": [
-        {
-            "name": "vetHealthAPI",
-            "endpoint": "https://79x154fzhk.execute-api.us-east-1.amazonaws.com/dev",
-            "region": "us-east-1"
-        }
-    ]
+    "aws_appsync_graphqlEndpoint": "https://cgfvdsdk2fd4hpxxz5trjrzola.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_region": "us-east-1",
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_appsync_apiKey": "da2-npjb26bpjfalfartv7ly6uonhi"
 };
 
 

@@ -15,6 +15,15 @@ import {
   AccordionSummary,
 } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { generateClient } from "aws-amplify/api";
+import {
+  createWorkout,
+  updateWorkout,
+  deleteWorkout,
+} from "../graphql/mutations";
+import { listTodos, listWorkouts } from "../graphql/queries";
+import * as queries from "../graphql/queries";
+import { useEffect } from "react";
 
 function LinearProgressWithLabel(props) {
   return (
@@ -41,13 +50,15 @@ LinearProgressWithLabel.propTypes = {
 
 export const Home = () => {
   const [progress, setProgress] = React.useState(10);
+  const client = generateClient();
 
+  const [workoutInput, setWorkoutInput] = useState("");
   const [workout, setWorkout] = useState("");
   const [feeling, setFeeling] = useState("");
   const [weight, setWeight] = useState("");
 
   const handleWorkoutChange = (event) => {
-    setWorkout(event.target.value);
+    setWorkoutInput(event.target.value);
   };
 
   const handleFeelingChange = (event) => {
@@ -58,16 +69,66 @@ export const Home = () => {
     setWeight(event.target.value);
   };
 
+  const handleWeightSubmit = () => {
+    console.log("Submitting weight:", { weight });
+    setWeight("");
+  };
+
+  useEffect(() => {
+    fetchWorkout();
+  }, []);
+
   const handleWorkoutSubmit = () => {
     console.log("Submitting workout:", { workout, feeling });
     setWorkout("");
     setFeeling("");
   };
 
-  const handleWeightSubmit = () => {
-    console.log("Submitting weight:", { weight });
-    setWeight("");
-  };
+  async function fetchWorkout() {
+    try {
+      const workoutData = await client.graphql({
+        query: queries.listWorkouts,
+      });
+      const workout = workoutData.data.listWorkouts.items;
+      console.log(workout);
+      setWorkout(workout);
+    } catch (err) {
+      console.log("error fetching todos", err);
+    }
+  }
+
+  // async function addWorkout() {
+  //   try {
+  //     setWorkout([...workout, workout]);
+
+  //     await client.graphql({
+  //       query: createWorkout,
+  //       variables: {
+  //         input: "workout",
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log("error creating todo:", err);
+  //   }
+  // }
+  async function addWorkout() {
+    try {
+      // Assuming you want to add the input to the API and then fetch the updated list
+      await client.graphql({
+        query: createWorkout,
+        variables: {
+          input: {
+            workout: workoutInput,
+          },
+        },
+      });
+      fetchWorkout(); // Refetch workouts to get the updated list
+      setWorkoutInput(""); // Reset input field
+      setFeeling(""); // Reset feeling input
+    } catch (err) {
+      console.log("error creating workout:", err);
+    }
+  }
 
   return (
     <>
@@ -140,7 +201,7 @@ export const Home = () => {
                         variant="contained"
                         color="primary"
                         fullWidth
-                        onClick={handleWorkoutSubmit}
+                        onClick={addWorkout}
                       >
                         Submit
                       </Button>

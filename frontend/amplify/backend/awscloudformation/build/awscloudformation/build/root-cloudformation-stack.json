@@ -1,5 +1,5 @@
 {
-  "Description": "Root Stack for AWS Amplify CLI",
+  "Description": "Root Stack for AWS Amplify Console",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "DeploymentBucketName": {
@@ -228,23 +228,22 @@
         }
       }
     },
-    "apivetHealthAPI": {
+    "apiveteranhealth": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/api/vetHealthAPI-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "Parameters": {
-          "functionworkoutFunctionName": {
+          "AppSyncApiName": "veteranhealth",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "AuthCognitoUserPoolId": {
             "Fn::GetAtt": [
-              "functionworkoutFunction",
-              "Outputs.Name"
+              "authveteranhealth854bf56a",
+              "Outputs.UserPoolId"
             ]
           },
-          "functionworkoutFunctionArn": {
-            "Fn::GetAtt": [
-              "functionworkoutFunction",
-              "Outputs.Arn"
-            ]
-          },
+          "S3DeploymentBucket": "amplify-veteranhealth-dev-143511-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/8252debbc141fd0c74c54aaac70f9d645ba7d87f",
           "env": "dev"
         }
       }

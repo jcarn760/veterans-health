@@ -1,9 +1,9 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "vetHealthAPI": {
-      "ApiId": "string",
-      "ApiName": "string",
-      "RootUrl": "string"
+    "veteranhealth": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string",
+      "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
