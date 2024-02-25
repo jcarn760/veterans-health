@@ -25,6 +25,13 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
+    ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "vetHealthAPI",
+            "endpoint": "https://79x154fzhk.execute-api.us-east-1.amazonaws.com/dev",
+            "region": "us-east-1"
+        }
     ]
 };
 

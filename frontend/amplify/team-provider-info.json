@@ -14,6 +14,19 @@
     "categories": {
       "auth": {
         "veteranhealth854bf56a": {}
+      },
+      "function": {
+        "workoutFunction": {
+          "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+          "s3Key": "amplify-builds/workoutFunction-2b6567416133525a4771-build.zip"
+        },
+        "vethealthWorkout": {
+          "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+          "s3Key": "amplify-builds/vethealthWorkout-484f4f434257486b6f4a-build.zip"
+        }
+      },
+      "api": {
+        "vetHealthAPI": {}
       }
     }
   }

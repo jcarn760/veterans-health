@@ -81,7 +81,9 @@ export const Home = () => {
             <Card style={{ width: "60%", padding: "20px" }}>
               <Typography variant="h6">Your goal progress!</Typography>
               <LinearProgressWithLabel value={progress} />
-              <Typography variant="subtitle1">To change your goal head to account page.</Typography>
+              <Typography variant="subtitle1">
+                To change your goal head to account page.
+              </Typography>
             </Card>
           </Box>
           <Box pl="30%" pt="3%">

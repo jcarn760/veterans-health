@@ -1,4 +1,20 @@
 {
+  "api": {
+    "vetHealthAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "workoutFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "veteranhealth854bf56a": {
       "customAuth": false,
@@ -25,6 +41,52 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "vethealthWorkout": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "workoutFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_vethealthWorkout_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vethealthWorkout"
+        }
+      ]
+    },
+    "AMPLIFY_function_vethealthWorkout_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "vethealthWorkout"
+        }
+      ]
+    },
+    "AMPLIFY_function_workoutFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workoutFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_workoutFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workoutFunction"
+        }
+      ]
     }
   }
 }

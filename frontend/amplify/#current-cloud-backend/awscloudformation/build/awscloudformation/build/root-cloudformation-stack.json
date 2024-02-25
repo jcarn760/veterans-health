@@ -206,6 +206,49 @@
         }
       }
     },
+    "functionvethealthWorkout": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/function/vethealthWorkout-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+          "s3Key": "amplify-builds/vethealthWorkout-484f4f434257486b6f4a-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "functionworkoutFunction": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/function/workoutFunction-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+          "s3Key": "amplify-builds/workoutFunction-2b6567416133525a4771-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "apivetHealthAPI": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/api/vetHealthAPI-cloudformation-template.json",
+        "Parameters": {
+          "functionworkoutFunctionName": {
+            "Fn::GetAtt": [
+              "functionworkoutFunction",
+              "Outputs.Name"
+            ]
+          },
+          "functionworkoutFunctionArn": {
+            "Fn::GetAtt": [
+              "functionworkoutFunction",
+              "Outputs.Arn"
+            ]
+          },
+          "env": "dev"
+        }
+      }
+    },
     "UpdateRolesWithIDPFunction": {
       "DependsOn": [
         "AuthRole",

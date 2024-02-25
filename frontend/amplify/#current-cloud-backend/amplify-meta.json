@@ -14,35 +14,30 @@
   },
   "auth": {
     "veteranhealth854bf56a": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
       "customAuth": false,
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "signupAttributes": [
-          "EMAIL"
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
         ],
         "verificationMechanisms": [
           "EMAIL"
         ]
       },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
-        "logicalId": "authveteranhealth854bf56a"
-      },
-      "lastPushTimeStamp": "2024-02-23T19:43:31.783Z",
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
       "output": {
         "UserPoolId": "us-east-1_Mh3fv5neQ",
         "AppClientIDWeb": "1ap2o77tjhd2n5u5c3tssogi2v",
@@ -52,7 +47,92 @@
         "IdentityPoolName": "veteranhealth854bf56a_identitypool_854bf56a__dev",
         "UserPoolName": "veteranhealth854bf56a_userpool_854bf56a"
       },
-      "lastPushDirHash": "k00b8drHTYnXKOPvzZdunPOQLA4="
+      "lastPushTimeStamp": "2024-02-25T05:23:50.979Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
+        "logicalId": "authveteranhealth854bf56a"
+      }
+    }
+  },
+  "function": {
+    "vethealthWorkout": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2024-02-25T05:21:41.135Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-02-25T05:21:41.160Z",
+      "distZipFilename": "vethealthWorkout-484f4f434257486b6f4a-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+        "s3Key": "amplify-builds/vethealthWorkout-484f4f434257486b6f4a-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/function/vethealthWorkout-cloudformation-template.json",
+        "logicalId": "functionvethealthWorkout"
+      },
+      "lastPushTimeStamp": "2024-02-25T05:23:51.557Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::074625186254:role/veteranhealthLambdaRole50c537d6-dev",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:074625186254:function:vethealthWorkout-dev",
+        "Name": "vethealthWorkout-dev",
+        "LambdaExecutionRole": "veteranhealthLambdaRole50c537d6-dev"
+      },
+      "lastPushDirHash": "kN20nfijmVe2+BKXqvKarGvr6V4="
+    },
+    "workoutFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2024-02-25T05:21:44.535Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-02-25T05:21:45.343Z",
+      "distZipFilename": "workoutFunction-2b6567416133525a4771-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+        "s3Key": "amplify-builds/workoutFunction-2b6567416133525a4771-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/function/workoutFunction-cloudformation-template.json",
+        "logicalId": "functionworkoutFunction"
+      },
+      "lastPushTimeStamp": "2024-02-25T05:23:51.557Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::074625186254:role/veteranhealthLambdaRolee739ceaf-dev",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:074625186254:function:workoutFunction-dev",
+        "Name": "workoutFunction-dev",
+        "LambdaExecutionRole": "veteranhealthLambdaRolee739ceaf-dev"
+      },
+      "lastPushDirHash": "vnLlqJnrIe9Az4waijgOOumhJtc="
+    }
+  },
+  "api": {
+    "vetHealthAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "workoutFunction",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/api/vetHealthAPI-cloudformation-template.json",
+        "logicalId": "apivetHealthAPI"
+      },
+      "lastPushTimeStamp": "2024-02-25T05:23:51.557Z",
+      "output": {
+        "ApiName": "vetHealthAPI",
+        "RootUrl": "https://79x154fzhk.execute-api.us-east-1.amazonaws.com/dev",
+        "ApiId": "79x154fzhk"
+      },
+      "lastPushDirHash": "MRTuDeTqk49PF6rdrvzEnDyF1zw="
     }
   }
 }
