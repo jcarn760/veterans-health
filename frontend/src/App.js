@@ -11,11 +11,42 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import ProtectedApp from "./ProtectedApp";
-import '@aws-amplify/ui-react/styles.css';
+import "@aws-amplify/ui-react/styles.css";
+// import { Amplify } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import config from "./amplifyconfiguration.json";
+// import { generateClient } from "aws-amplify/api";
+import { createTodo, updateTodo, deleteTodo } from "./graphql/mutations";
+import { listTodos } from "./graphql/queries";
+import { useEffect } from "react";
+Amplify.configure(config);
+
+const client = generateClient();
 
 Amplify.configure(awsExports);
 
 export const App = ({ signOut, user }) => {
+  useEffect(() => {
+    const addTodo = async () => {
+      try {
+        const result = await client.graphql({
+          query: createTodo,
+          variables: {
+            input: {
+              name: "UMGC CLASS ",
+              description: "FINALLY ",
+            },
+          },
+        });
+        console.log(result); // Process the result as needed
+      } catch (error) {
+        console.error("Error adding todo", error);
+      }
+    };
+
+    addTodo(); // Call the async function
+  }, []); // Empty dependency array means this effect runs once on mount
+
   return (
     <>
       <Routes>

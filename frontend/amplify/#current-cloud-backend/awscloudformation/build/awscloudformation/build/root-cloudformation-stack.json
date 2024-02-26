@@ -152,10 +152,30 @@
         }
       }
     },
+    "apiveteranhealth": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "Parameters": {
+          "AppSyncApiName": "veteranhealth",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "AuthCognitoUserPoolId": {
+            "Fn::GetAtt": [
+              "authveteranhealth854bf56a",
+              "Outputs.UserPoolId"
+            ]
+          },
+          "S3DeploymentBucket": "amplify-veteranhealth-vethealth-162532-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/09deddc017b025400b964f6768476cb2b95b9e0f",
+          "env": "vethealth"
+        }
+      }
+    },
     "authveteranhealth854bf56a": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
         "Parameters": {
           "identityPoolName": "veteranhealth854bf56a_identitypool_854bf56a",
           "allowUnauthenticatedIdentities": false,
@@ -202,7 +222,7 @@
           },
           "breakCircularDependency": true,
           "dependsOn": "",
-          "env": "dev"
+          "env": "vethealth"
         }
       }
     },
