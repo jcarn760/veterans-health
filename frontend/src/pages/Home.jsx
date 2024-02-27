@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   LinearProgress,
@@ -15,6 +15,19 @@ import {
   AccordionSummary,
 } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Amplify } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import awsExports from "../aws-exports";
+import config from "../amplifyconfiguration.json";
+import {
+  createWorkout,
+  updateWorkout,
+  deleteWorkout,
+} from "../graphql/mutations";
+import { listWorkouts } from "../graphql/queries";
+Amplify.configure(awsExports);
+Amplify.configure(config);
+const client = generateClient();
 
 function LinearProgressWithLabel(props) {
   return (
@@ -45,6 +58,7 @@ export const Home = () => {
   const [workout, setWorkout] = useState("");
   const [feeling, setFeeling] = useState("");
   const [weight, setWeight] = useState("");
+  const [getWorkouts, setGetWorkout] = useState([]);
 
   const handleWorkoutChange = (event) => {
     setWorkout(event.target.value);
@@ -58,11 +72,42 @@ export const Home = () => {
     setWeight(event.target.value);
   };
 
-  const handleWorkoutSubmit = () => {
+  //Submit data to the DB
+  const handleWorkoutSubmit = async () => {
     console.log("Submitting workout:", { workout, feeling });
     setWorkout("");
     setFeeling("");
+    try {
+      const result = await client.graphql({
+        query: createWorkout,
+        variables: {
+          input: {
+            workout_name: workout,
+            feel: feeling,
+          },
+        },
+      });
+      console.log(result); // Process the result as needed
+    } catch (error) {
+      console.error("Error adding todo", error);
+    }
   };
+
+  //Get Data from the DB.
+
+  useEffect(() => {
+    const handleWorkoutDisplay = async () => {
+      try {
+        const result = await client.graphql({ query: listWorkouts });
+        console.log("List Workout");
+        console.log(result.data.listWorkouts.items);
+        setGetWorkout(result.data.listWorkouts.items);
+      } catch (error) {
+        console.error("Error adding todo", error);
+      }
+    };
+    handleWorkoutDisplay();
+  }, []);
 
   const handleWeightSubmit = () => {
     console.log("Submitting weight:", { weight });
@@ -75,13 +120,21 @@ export const Home = () => {
         <Box textAlign="center">
           <Typography variant="h3">Hello!</Typography>
           <Typography variant="h6">How are you feeling today?</Typography>
+          {console.log(getWorkouts)}
+          {getWorkouts.map((getWorkout, index) => (
+            <div key={index}>
+              {getWorkout.workout_name} - {getWorkout.feel}
+            </div>
+          ))}
         </Box>
         <Stack>
           <Box pl="30%" pt="10%">
             <Card style={{ width: "60%", padding: "20px" }}>
               <Typography variant="h6">Your goal progress!</Typography>
               <LinearProgressWithLabel value={progress} />
-              <Typography variant="subtitle1">To change your goal head to account page.</Typography>
+              <Typography variant="subtitle1">
+                To change your goal head to account page.
+              </Typography>
             </Card>
           </Box>
           <Box pl="30%" pt="3%">

@@ -1,15 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo(
-    $filter: ModelSubscriptionTodoFilterInput
+export const onCreateWorkout = /* GraphQL */ `
+  subscription OnCreateWorkout(
+    $filter: ModelSubscriptionWorkoutFilterInput
     $owner: String
   ) {
-    onCreateTodo(filter: $filter, owner: $owner) {
+    onCreateWorkout(filter: $filter, owner: $owner) {
       id
-      name
-      description
+      workout_name
+      feel
       createdAt
       updatedAt
       owner
@@ -17,15 +17,15 @@ export const onCreateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo(
-    $filter: ModelSubscriptionTodoFilterInput
+export const onUpdateWorkout = /* GraphQL */ `
+  subscription OnUpdateWorkout(
+    $filter: ModelSubscriptionWorkoutFilterInput
     $owner: String
   ) {
-    onUpdateTodo(filter: $filter, owner: $owner) {
+    onUpdateWorkout(filter: $filter, owner: $owner) {
       id
-      name
-      description
+      workout_name
+      feel
       createdAt
       updatedAt
       owner
@@ -33,15 +33,15 @@ export const onUpdateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo(
-    $filter: ModelSubscriptionTodoFilterInput
+export const onDeleteWorkout = /* GraphQL */ `
+  subscription OnDeleteWorkout(
+    $filter: ModelSubscriptionWorkoutFilterInput
     $owner: String
   ) {
-    onDeleteTodo(filter: $filter, owner: $owner) {
+    onDeleteWorkout(filter: $filter, owner: $owner) {
       id
-      name
-      description
+      workout_name
+      feel
       createdAt
       updatedAt
       owner

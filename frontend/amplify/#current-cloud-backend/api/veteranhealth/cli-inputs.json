@@ -7,14 +7,14 @@
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authveteranhealth854bf56a"
     },
-    "conflictResolution": {},
     "additionalAuthTypes": [
       {
         "mode": "API_KEY",
-        "expirationTime": 7,
-        "apiKeyExpirationDate": "2024-03-03T22:35:07.016Z",
-        "keyDescription": "vethealthapp"
+        "expirationTime": 50,
+        "apiKeyExpirationDate": "2024-04-17T03:48:42.821Z",
+        "keyDescription": "vetHealth"
       }
-    ]
+    ],
+    "conflictResolution": {}
   }
 }

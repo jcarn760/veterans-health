@@ -92,7 +92,7 @@
     }
   },
   "Resources": {
-    "veteranInfoTable": {
+    "WorkoutTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "KeySchema": [
@@ -159,7 +159,7 @@
           "Fn::Join": [
             "",
             [
-              "veteranInfo-",
+              "Workout-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -174,7 +174,7 @@
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete"
     },
-    "veteranInfoIAMRoleEA4C2FB9": {
+    "WorkoutIAMRole6E82149C": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -193,7 +193,7 @@
           "Fn::Join": [
             "",
             [
-              "veteranInfoIAMRoleaf1608-",
+              "WorkoutIAMRole8d6fc4-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -206,7 +206,7 @@
         }
       }
     },
-    "veteranInfoIAMRoleDefaultPolicyB269E998": {
+    "WorkoutIAMRoleDefaultPolicy56B22F7F": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -230,7 +230,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "veteranInfoTable",
+                    "WorkoutTable",
                     "Arn"
                   ]
                 },
@@ -242,10 +242,10 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "veteranInfoIAMRoleDefaultPolicyB269E998",
+        "PolicyName": "WorkoutIAMRoleDefaultPolicy56B22F7F",
         "Roles": [
           {
-            "Ref": "veteranInfoIAMRoleEA4C2FB9"
+            "Ref": "WorkoutIAMRole6E82149C"
           }
         ]
       }
@@ -276,7 +276,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "veteranInfo-",
+                            "Workout-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -298,7 +298,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "veteranInfo-",
+                            "Workout-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -320,39 +320,39 @@
         "PolicyName": "DynamoDBAccess71ABE5AE",
         "Roles": [
           {
-            "Ref": "veteranInfoIAMRoleEA4C2FB9"
+            "Ref": "WorkoutIAMRole6E82149C"
           }
         ]
       }
     },
-    "veteranInfoDataSource": {
+    "WorkoutDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "Name": "veteranInfoTable",
+        "Name": "WorkoutTable",
         "Type": "AMAZON_DYNAMODB",
         "DynamoDBConfig": {
           "AwsRegion": {
             "Ref": "AWS::Region"
           },
           "TableName": {
-            "Ref": "veteranInfoTable"
+            "Ref": "WorkoutTable"
           }
         },
         "ServiceRoleArn": {
           "Fn::GetAtt": [
-            "veteranInfoIAMRoleEA4C2FB9",
+            "WorkoutIAMRole6E82149C",
             "Arn"
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoIAMRoleEA4C2FB9"
+        "WorkoutIAMRole6E82149C"
       ]
     },
-    "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B": {
+    "QuerygetWorkoutauth0FunctionQuerygetWorkoutauth0FunctionAppSyncFunctionE5BFDEED": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -361,7 +361,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "QuerygetVeteranInfoauth0Function",
+        "Name": "QuerygetWorkoutauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -375,14 +375,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getVeteranInfo.auth.1.req.vtl"
+              "/resolvers/Query.getWorkout.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4": {
+    "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -391,7 +391,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "QuerygetVeteranInfopostAuth0Function",
+        "Name": "QuerygetWorkoutpostAuth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -405,14 +405,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getVeteranInfo.postAuth.1.req.vtl"
+              "/resolvers/Query.getWorkout.postAuth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QueryGetVeteranInfoDataResolverFnQueryGetVeteranInfoDataResolverFnAppSyncFunction0B82C705": {
+    "QueryGetWorkoutDataResolverFnQueryGetWorkoutDataResolverFnAppSyncFunction6780D396": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -420,11 +420,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "QueryGetVeteranInfoDataResolverFn",
+        "Name": "QueryGetWorkoutDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -438,7 +438,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getVeteranInfo.req.vtl"
+              "/resolvers/Query.getWorkout.req.vtl"
             ]
           ]
         },
@@ -454,41 +454,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getVeteranInfo.res.vtl"
+              "/resolvers/Query.getWorkout.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "GetveteranInfoResolver": {
+    "GetWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "getVeteranInfo",
+        "FieldName": "getWorkout",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B",
+                "QuerygetWorkoutauth0FunctionQuerygetWorkoutauth0FunctionAppSyncFunctionE5BFDEED",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QueryGetVeteranInfoDataResolverFnQueryGetVeteranInfoDataResolverFnAppSyncFunction0B82C705",
+                "QueryGetWorkoutDataResolverFnQueryGetWorkoutDataResolverFnAppSyncFunction6780D396",
                 "FunctionId"
               ]
             }
@@ -498,22 +498,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "veteranInfoTable"
+                "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "QueryListVeteranInfosDataResolverFnQueryListVeteranInfosDataResolverFnAppSyncFunctionA40A6C6B": {
+    "QueryListWorkoutsDataResolverFnQueryListWorkoutsDataResolverFnAppSyncFunctionF52A92B4": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -521,11 +521,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "QueryListVeteranInfosDataResolverFn",
+        "Name": "QueryListWorkoutsDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -539,7 +539,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listVeteranInfos.req.vtl"
+              "/resolvers/Query.listWorkouts.req.vtl"
             ]
           ]
         },
@@ -555,41 +555,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listVeteranInfos.res.vtl"
+              "/resolvers/Query.listWorkouts.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "ListveteranInfoResolver": {
+    "ListWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "listVeteranInfos",
+        "FieldName": "listWorkouts",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B",
+                "QuerygetWorkoutauth0FunctionQuerygetWorkoutauth0FunctionAppSyncFunctionE5BFDEED",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QueryListVeteranInfosDataResolverFnQueryListVeteranInfosDataResolverFnAppSyncFunctionA40A6C6B",
+                "QueryListWorkoutsDataResolverFnQueryListWorkoutsDataResolverFnAppSyncFunctionF52A92B4",
                 "FunctionId"
               ]
             }
@@ -599,22 +599,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listVeteranInfos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listWorkouts\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "veteranInfoTable"
+                "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationcreateVeteranInfoinit0FunctionMutationcreateVeteranInfoinit0FunctionAppSyncFunctionC39F2FC1": {
+    "MutationcreateWorkoutinit0FunctionMutationcreateWorkoutinit0FunctionAppSyncFunction2E628C69": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -623,7 +623,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationcreateVeteranInfoinit0Function",
+        "Name": "MutationcreateWorkoutinit0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -637,14 +637,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createVeteranInfo.init.1.req.vtl"
+              "/resolvers/Mutation.createWorkout.init.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationcreateVeteranInfoauth0FunctionMutationcreateVeteranInfoauth0FunctionAppSyncFunction1A304774": {
+    "MutationcreateWorkoutauth0FunctionMutationcreateWorkoutauth0FunctionAppSyncFunction1C6DC6C1": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -653,7 +653,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationcreateVeteranInfoauth0Function",
+        "Name": "MutationcreateWorkoutauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -667,14 +667,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createVeteranInfo.auth.1.req.vtl"
+              "/resolvers/Mutation.createWorkout.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationCreateVeteranInfoDataResolverFnMutationCreateVeteranInfoDataResolverFnAppSyncFunction8481F0B8": {
+    "MutationCreateWorkoutDataResolverFnMutationCreateWorkoutDataResolverFnAppSyncFunction7CCCC52E": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -682,11 +682,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "MutationCreateVeteranInfoDataResolverFn",
+        "Name": "MutationCreateWorkoutDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -700,7 +700,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createVeteranInfo.req.vtl"
+              "/resolvers/Mutation.createWorkout.req.vtl"
             ]
           ]
         },
@@ -716,47 +716,47 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createVeteranInfo.res.vtl"
+              "/resolvers/Mutation.createWorkout.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "CreateveteranInfoResolver": {
+    "CreateWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "createVeteranInfo",
+        "FieldName": "createWorkout",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationcreateVeteranInfoinit0FunctionMutationcreateVeteranInfoinit0FunctionAppSyncFunctionC39F2FC1",
+                "MutationcreateWorkoutinit0FunctionMutationcreateWorkoutinit0FunctionAppSyncFunction2E628C69",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationcreateVeteranInfoauth0FunctionMutationcreateVeteranInfoauth0FunctionAppSyncFunction1A304774",
+                "MutationcreateWorkoutauth0FunctionMutationcreateWorkoutauth0FunctionAppSyncFunction1C6DC6C1",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationCreateVeteranInfoDataResolverFnMutationCreateVeteranInfoDataResolverFnAppSyncFunction8481F0B8",
+                "MutationCreateWorkoutDataResolverFnMutationCreateWorkoutDataResolverFnAppSyncFunction7CCCC52E",
                 "FunctionId"
               ]
             }
@@ -766,22 +766,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "veteranInfoTable"
+                "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationupdateVeteranInfoinit0FunctionMutationupdateVeteranInfoinit0FunctionAppSyncFunctionA63F96AE": {
+    "MutationupdateWorkoutinit0FunctionMutationupdateWorkoutinit0FunctionAppSyncFunction0496C9C0": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -790,7 +790,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationupdateVeteranInfoinit0Function",
+        "Name": "MutationupdateWorkoutinit0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -804,14 +804,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateVeteranInfo.init.1.req.vtl"
+              "/resolvers/Mutation.updateWorkout.init.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationupdateVeteranInfoauth0FunctionMutationupdateVeteranInfoauth0FunctionAppSyncFunction9ADE3A00": {
+    "MutationupdateWorkoutauth0FunctionMutationupdateWorkoutauth0FunctionAppSyncFunctionE686FE25": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -819,11 +819,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "MutationupdateVeteranInfoauth0Function",
+        "Name": "MutationupdateWorkoutauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -837,7 +837,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateVeteranInfo.auth.1.req.vtl"
+              "/resolvers/Mutation.updateWorkout.auth.1.req.vtl"
             ]
           ]
         },
@@ -853,16 +853,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateVeteranInfo.auth.1.res.vtl"
+              "/resolvers/Mutation.updateWorkout.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "MutationUpdateVeteranInfoDataResolverFnMutationUpdateVeteranInfoDataResolverFnAppSyncFunction1E586549": {
+    "MutationUpdateWorkoutDataResolverFnMutationUpdateWorkoutDataResolverFnAppSyncFunction801694F8": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -870,11 +870,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "MutationUpdateVeteranInfoDataResolverFn",
+        "Name": "MutationUpdateWorkoutDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -888,7 +888,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateVeteranInfo.req.vtl"
+              "/resolvers/Mutation.updateWorkout.req.vtl"
             ]
           ]
         },
@@ -904,47 +904,47 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateVeteranInfo.res.vtl"
+              "/resolvers/Mutation.updateWorkout.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "UpdateveteranInfoResolver": {
+    "UpdateWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "updateVeteranInfo",
+        "FieldName": "updateWorkout",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationupdateVeteranInfoinit0FunctionMutationupdateVeteranInfoinit0FunctionAppSyncFunctionA63F96AE",
+                "MutationupdateWorkoutinit0FunctionMutationupdateWorkoutinit0FunctionAppSyncFunction0496C9C0",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationupdateVeteranInfoauth0FunctionMutationupdateVeteranInfoauth0FunctionAppSyncFunction9ADE3A00",
+                "MutationupdateWorkoutauth0FunctionMutationupdateWorkoutauth0FunctionAppSyncFunctionE686FE25",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationUpdateVeteranInfoDataResolverFnMutationUpdateVeteranInfoDataResolverFnAppSyncFunction1E586549",
+                "MutationUpdateWorkoutDataResolverFnMutationUpdateWorkoutDataResolverFnAppSyncFunction801694F8",
                 "FunctionId"
               ]
             }
@@ -954,22 +954,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "veteranInfoTable"
+                "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationdeleteVeteranInfoauth0FunctionMutationdeleteVeteranInfoauth0FunctionAppSyncFunction23985972": {
+    "MutationdeleteWorkoutauth0FunctionMutationdeleteWorkoutauth0FunctionAppSyncFunction231ED659": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -977,11 +977,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "MutationdeleteVeteranInfoauth0Function",
+        "Name": "MutationdeleteWorkoutauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -995,7 +995,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteVeteranInfo.auth.1.req.vtl"
+              "/resolvers/Mutation.deleteWorkout.auth.1.req.vtl"
             ]
           ]
         },
@@ -1011,16 +1011,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteVeteranInfo.auth.1.res.vtl"
+              "/resolvers/Mutation.deleteWorkout.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "MutationDeleteVeteranInfoDataResolverFnMutationDeleteVeteranInfoDataResolverFnAppSyncFunctionBC6028A0": {
+    "MutationDeleteWorkoutDataResolverFnMutationDeleteWorkoutDataResolverFnAppSyncFunctionC061FC33": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1028,11 +1028,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "veteranInfoDataSource",
+            "WorkoutDataSource",
             "Name"
           ]
         },
-        "Name": "MutationDeleteVeteranInfoDataResolverFn",
+        "Name": "MutationDeleteWorkoutDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1046,7 +1046,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteVeteranInfo.req.vtl"
+              "/resolvers/Mutation.deleteWorkout.req.vtl"
             ]
           ]
         },
@@ -1062,41 +1062,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteVeteranInfo.res.vtl"
+              "/resolvers/Mutation.deleteWorkout.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "veteranInfoDataSource"
+        "WorkoutDataSource"
       ]
     },
-    "DeleteveteranInfoResolver": {
+    "DeleteWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "deleteVeteranInfo",
+        "FieldName": "deleteWorkout",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationdeleteVeteranInfoauth0FunctionMutationdeleteVeteranInfoauth0FunctionAppSyncFunction23985972",
+                "MutationdeleteWorkoutauth0FunctionMutationdeleteWorkoutauth0FunctionAppSyncFunction231ED659",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationDeleteVeteranInfoDataResolverFnMutationDeleteVeteranInfoDataResolverFnAppSyncFunctionBC6028A0",
+                "MutationDeleteWorkoutDataResolverFnMutationDeleteWorkoutDataResolverFnAppSyncFunctionC061FC33",
                 "FunctionId"
               ]
             }
@@ -1106,22 +1106,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "veteranInfoTable"
+                "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084": {
+    "SubscriptiononCreateWorkoutauth0FunctionSubscriptiononCreateWorkoutauth0FunctionAppSyncFunctionF0D263DB": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1130,7 +1130,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "SubscriptiononCreateVeteranInfoauth0Function",
+        "Name": "SubscriptiononCreateWorkoutauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1144,14 +1144,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateVeteranInfo.auth.1.req.vtl"
+              "/resolvers/Subscription.onCreateWorkout.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88": {
+    "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1160,7 +1160,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "SubscriptionOnCreateVeteranInfoDataResolverFn",
+        "Name": "SubscriptionOnCreateWorkoutDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1174,7 +1174,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateVeteranInfo.req.vtl"
+              "/resolvers/Subscription.onCreateWorkout.req.vtl"
             ]
           ]
         },
@@ -1190,38 +1190,38 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateVeteranInfo.res.vtl"
+              "/resolvers/Subscription.onCreateWorkout.res.vtl"
             ]
           ]
         }
       }
     },
-    "SubscriptiononCreateVeteranInfoResolver": {
+    "SubscriptiononCreateWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onCreateVeteranInfo",
+        "FieldName": "onCreateWorkout",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
+                "SubscriptiononCreateWorkoutauth0FunctionSubscriptiononCreateWorkoutauth0FunctionAppSyncFunctionF0D263DB",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
+                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
                 "FunctionId"
               ]
             }
@@ -1231,43 +1231,43 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononUpdateVeteranInfoResolver": {
+    "SubscriptiononUpdateWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onUpdateVeteranInfo",
+        "FieldName": "onUpdateWorkout",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
+                "SubscriptiononCreateWorkoutauth0FunctionSubscriptiononCreateWorkoutauth0FunctionAppSyncFunctionF0D263DB",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
+                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
                 "FunctionId"
               ]
             }
@@ -1277,43 +1277,43 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononDeleteVeteranInfoResolver": {
+    "SubscriptiononDeleteWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onDeleteVeteranInfo",
+        "FieldName": "onDeleteWorkout",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
+                "SubscriptiononCreateWorkoutauth0FunctionSubscriptiononCreateWorkoutauth0FunctionAppSyncFunctionF0D263DB",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
+                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
+                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
                 "FunctionId"
               ]
             }
@@ -1323,18 +1323,18 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteWorkout\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "VeteranInfoOwnerDataResolverFnVeteranInfoOwnerDataResolverFnAppSyncFunction617C96F1": {
+    "WorkoutOwnerDataResolverFnWorkoutOwnerDataResolverFnAppSyncFunctionD52C20F4": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1343,7 +1343,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "VeteranInfoOwnerDataResolverFn",
+        "Name": "WorkoutOwnerDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1357,7 +1357,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/veteranInfo.owner.req.vtl"
+              "/resolvers/Workout.owner.req.vtl"
             ]
           ]
         },
@@ -1373,26 +1373,26 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/veteranInfo.owner.res.vtl"
+              "/resolvers/Workout.owner.res.vtl"
             ]
           ]
         }
       }
     },
-    "veteranInfoownerResolver": {
+    "WorkoutownerResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "FieldName": "owner",
-        "TypeName": "veteranInfo",
+        "TypeName": "Workout",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "VeteranInfoOwnerDataResolverFnVeteranInfoOwnerDataResolverFnAppSyncFunction617C96F1",
+                "WorkoutOwnerDataResolverFnWorkoutOwnerDataResolverFnAppSyncFunctionD52C20F4",
                 "FunctionId"
               ]
             }
@@ -1402,11 +1402,11 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"veteranInfo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Workout\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1415,11 +1415,11 @@
     }
   },
   "Outputs": {
-    "GetAttveteranInfoTableStreamArn": {
+    "GetAttWorkoutTableStreamArn": {
       "Description": "Your DynamoDB table StreamArn.",
       "Value": {
         "Fn::GetAtt": [
-          "veteranInfoTable",
+          "WorkoutTable",
           "StreamArn"
         ]
       },
@@ -1431,16 +1431,16 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:veteranInfoTable:StreamArn"
+              "GetAtt:WorkoutTable:StreamArn"
             ]
           ]
         }
       }
     },
-    "GetAttveteranInfoTableName": {
+    "GetAttWorkoutTableName": {
       "Description": "Your DynamoDB table name.",
       "Value": {
-        "Ref": "veteranInfoTable"
+        "Ref": "WorkoutTable"
       },
       "Export": {
         "Name": {
@@ -1450,17 +1450,17 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:veteranInfoTable:Name"
+              "GetAtt:WorkoutTable:Name"
             ]
           ]
         }
       }
     },
-    "GetAttveteranInfoDataSourceName": {
+    "GetAttWorkoutDataSourceName": {
       "Description": "Your model DataSource name.",
       "Value": {
         "Fn::GetAtt": [
-          "veteranInfoDataSource",
+          "WorkoutDataSource",
           "Name"
         ]
       },
@@ -1472,7 +1472,7 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:veteranInfoDataSource:Name"
+              "GetAtt:WorkoutDataSource:Name"
             ]
           ]
         }

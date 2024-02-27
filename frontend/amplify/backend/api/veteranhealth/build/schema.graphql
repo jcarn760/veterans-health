@@ -1,7 +1,7 @@
-type veteranInfo {
+type Workout {
   id: ID!
-  name: String!
-  description: String
+  workout_name: String!
+  feel: String!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   owner: String
@@ -157,65 +157,65 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelVeteranInfoConnection {
-  items: [veteranInfo]!
+type ModelWorkoutConnection {
+  items: [Workout]!
   nextToken: String
 }
 
-input ModelVeteranInfoFilterInput {
+input ModelWorkoutFilterInput {
   id: ModelIDInput
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelVeteranInfoFilterInput]
-  or: [ModelVeteranInfoFilterInput]
-  not: ModelVeteranInfoFilterInput
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutFilterInput]
+  or: [ModelWorkoutFilterInput]
+  not: ModelWorkoutFilterInput
 }
 
 type Query {
-  getVeteranInfo(id: ID!): veteranInfo
-  listVeteranInfos(filter: ModelVeteranInfoFilterInput, limit: Int, nextToken: String): ModelVeteranInfoConnection
+  getWorkout(id: ID!): Workout
+  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection
 }
 
-input ModelVeteranInfoConditionInput {
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelVeteranInfoConditionInput]
-  or: [ModelVeteranInfoConditionInput]
-  not: ModelVeteranInfoConditionInput
+input ModelWorkoutConditionInput {
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutConditionInput]
+  or: [ModelWorkoutConditionInput]
+  not: ModelWorkoutConditionInput
 }
 
-input CreateVeteranInfoInput {
+input CreateWorkoutInput {
   id: ID
-  name: String!
-  description: String
+  workout_name: String!
+  feel: String!
 }
 
-input UpdateVeteranInfoInput {
+input UpdateWorkoutInput {
   id: ID!
-  name: String
-  description: String
+  workout_name: String
+  feel: String
 }
 
-input DeleteVeteranInfoInput {
+input DeleteWorkoutInput {
   id: ID!
 }
 
 type Mutation {
-  createVeteranInfo(input: CreateVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
-  updateVeteranInfo(input: UpdateVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
-  deleteVeteranInfo(input: DeleteVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
+  createWorkout(input: CreateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
+  updateWorkout(input: UpdateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
+  deleteWorkout(input: DeleteWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
 }
 
-input ModelSubscriptionVeteranInfoFilterInput {
+input ModelSubscriptionWorkoutFilterInput {
   id: ModelSubscriptionIDInput
-  name: ModelSubscriptionStringInput
-  description: ModelSubscriptionStringInput
-  and: [ModelSubscriptionVeteranInfoFilterInput]
-  or: [ModelSubscriptionVeteranInfoFilterInput]
+  workout_name: ModelSubscriptionStringInput
+  feel: ModelSubscriptionStringInput
+  and: [ModelSubscriptionWorkoutFilterInput]
+  or: [ModelSubscriptionWorkoutFilterInput]
 }
 
 type Subscription {
-  onCreateVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["createVeteranInfo"])
-  onUpdateVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["updateVeteranInfo"])
-  onDeleteVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["deleteVeteranInfo"])
+  onCreateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["createWorkout"])
+  onUpdateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["updateWorkout"])
+  onDeleteWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["deleteWorkout"])
 }

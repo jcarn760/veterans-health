@@ -1,7 +1,7 @@
-type Todo {
+type Workout {
   id: ID!
-  name: String!
-  description: String
+  workout_name: String!
+  feel: String!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   owner: String
@@ -157,65 +157,65 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelTodoConnection {
-  items: [Todo]!
+type ModelWorkoutConnection {
+  items: [Workout]!
   nextToken: String
 }
 
-input ModelTodoFilterInput {
+input ModelWorkoutFilterInput {
   id: ModelIDInput
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelTodoFilterInput]
-  or: [ModelTodoFilterInput]
-  not: ModelTodoFilterInput
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutFilterInput]
+  or: [ModelWorkoutFilterInput]
+  not: ModelWorkoutFilterInput
 }
 
 type Query {
-  getTodo(id: ID!): Todo
-  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  getWorkout(id: ID!): Workout
+  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection
 }
 
-input ModelTodoConditionInput {
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelTodoConditionInput]
-  or: [ModelTodoConditionInput]
-  not: ModelTodoConditionInput
+input ModelWorkoutConditionInput {
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutConditionInput]
+  or: [ModelWorkoutConditionInput]
+  not: ModelWorkoutConditionInput
 }
 
-input CreateTodoInput {
+input CreateWorkoutInput {
   id: ID
-  name: String!
-  description: String
+  workout_name: String!
+  feel: String!
 }
 
-input UpdateTodoInput {
+input UpdateWorkoutInput {
   id: ID!
-  name: String
-  description: String
+  workout_name: String
+  feel: String
 }
 
-input DeleteTodoInput {
+input DeleteWorkoutInput {
   id: ID!
 }
 
 type Mutation {
-  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo
-  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo
-  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo
+  createWorkout(input: CreateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
+  updateWorkout(input: UpdateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
+  deleteWorkout(input: DeleteWorkoutInput!, condition: ModelWorkoutConditionInput): Workout
 }
 
-input ModelSubscriptionTodoFilterInput {
+input ModelSubscriptionWorkoutFilterInput {
   id: ModelSubscriptionIDInput
-  name: ModelSubscriptionStringInput
-  description: ModelSubscriptionStringInput
-  and: [ModelSubscriptionTodoFilterInput]
-  or: [ModelSubscriptionTodoFilterInput]
+  workout_name: ModelSubscriptionStringInput
+  feel: ModelSubscriptionStringInput
+  and: [ModelSubscriptionWorkoutFilterInput]
+  or: [ModelSubscriptionWorkoutFilterInput]
 }
 
 type Subscription {
-  onCreateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["createTodo"])
-  onUpdateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["updateTodo"])
-  onDeleteTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"])
+  onCreateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["createWorkout"])
+  onUpdateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["updateWorkout"])
+  onDeleteWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["deleteWorkout"])
 }

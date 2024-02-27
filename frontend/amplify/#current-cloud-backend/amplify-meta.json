@@ -14,6 +14,8 @@
   },
   "api": {
     "veteranhealth": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "attributes": [
@@ -25,35 +27,33 @@
       ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 7,
-                "apiKeyExpirationDate": "2024-03-03T22:35:07.016Z",
-                "description": "vethealthapp"
-              }
-            }
-          ],
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
               "userPoolId": "authveteranhealth854bf56a"
             }
-          }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 50,
+                "apiKeyExpirationDate": "2024-04-17T03:48:42.821Z",
+                "description": "vetHealth"
+              }
+            }
+          ]
         },
-        "GraphQLAPIIdOutput": "bxh6h3et55asnhuhtzf4wtkixe",
-        "GraphQLAPIEndpointOutput": "https://c6xjfuspqzblrjl7oh53ovo5ya.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-bp2juqsl5ncylp2tlk7a2rcwlu"
+        "GraphQLAPIIdOutput": "nvivlunmofe4zgmd2rhkuaxhtq",
+        "GraphQLAPIEndpointOutput": "https://zjqxwqlsmzcgxlfx2ao6l7oizi.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-xmbxk7cr6rfx7bxaxgwylewwyu"
       },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync",
-      "lastPushTimeStamp": "2024-02-25T22:38:25.128Z",
+      "lastPushTimeStamp": "2024-02-27T03:50:29.577Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiveteranhealth"
       },
-      "lastPushDirHash": "r9pIxc/V/VouH81+qxXhfO+/iFg="
+      "lastPushDirHash": "HvTpZj/p7nrQWW4BcUv69vcuEjY="
     }
   },
   "auth": {
@@ -86,7 +86,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
         "logicalId": "authveteranhealth854bf56a"
       },
-      "lastPushTimeStamp": "2024-02-25T22:38:25.128Z",
+      "lastPushTimeStamp": "2024-02-27T03:50:28.232Z",
       "output": {
         "UserPoolId": "us-east-1_VrLQVkdnB",
         "AppClientIDWeb": "5n73d2344podbad5dfff6e783g",

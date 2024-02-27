@@ -128,8 +128,8 @@
                         "ApiId"
                     ]
                 },
-                "Description": "vethealthapp",
-                "Expires": 1709608366
+                "Description": "vetHealth",
+                "Expires": 1713325724
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -146,7 +146,7 @@
                 "Description": "None Data Source for Pipeline functions"
             }
         },
-        "veteranInfo": {
+        "Workout": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
                 "TemplateURL": {
@@ -169,7 +169,7 @@
                             {
                                 "Ref": "S3DeploymentRootKey"
                             },
-                            "/stacks/veteranInfo.json"
+                            "/stacks/Workout.json"
                         ]
                     ]
                 },
@@ -259,7 +259,7 @@
             "DependsOn": [
                 "GraphQLAPI",
                 "GraphQLAPITransformerSchema3CB2AE18",
-                "veteranInfo"
+                "Workout"
             ]
         }
     },
