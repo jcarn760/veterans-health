@@ -14,8 +14,6 @@
   },
   "api": {
     "veteranhealth": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "attributes": [
@@ -27,33 +25,29 @@
       ],
       "output": {
         "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
               "userPoolId": "authveteranhealth854bf56a"
             }
-          },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 50,
-                "apiKeyExpirationDate": "2024-04-17T03:48:42.821Z",
-                "description": "vetHealth"
-              }
-            }
-          ]
+          }
         },
         "GraphQLAPIIdOutput": "nvivlunmofe4zgmd2rhkuaxhtq",
-        "GraphQLAPIEndpointOutput": "https://zjqxwqlsmzcgxlfx2ao6l7oizi.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-xmbxk7cr6rfx7bxaxgwylewwyu"
+        "GraphQLAPIEndpointOutput": "https://zjqxwqlsmzcgxlfx2ao6l7oizi.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2024-02-27T03:50:29.577Z",
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2024-02-27T04:31:10.208Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiveteranhealth"
       },
-      "lastPushDirHash": "HvTpZj/p7nrQWW4BcUv69vcuEjY="
+      "lastPushDirHash": "naC7XgeEwYP1ua3nC9HqV5lyaTw="
     }
   },
   "auth": {
@@ -82,11 +76,6 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
-        "logicalId": "authveteranhealth854bf56a"
-      },
-      "lastPushTimeStamp": "2024-02-27T03:50:28.232Z",
       "output": {
         "UserPoolId": "us-east-1_VrLQVkdnB",
         "AppClientIDWeb": "5n73d2344podbad5dfff6e783g",
@@ -96,7 +85,11 @@
         "IdentityPoolName": "veteranhealth854bf56a_identitypool_854bf56a__vethealth",
         "UserPoolName": "veteranhealth854bf56a_userpool_854bf56a"
       },
-      "lastPushDirHash": "k00b8drHTYnXKOPvzZdunPOQLA4="
+      "lastPushTimeStamp": "2024-02-27T04:31:10.210Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
+        "logicalId": "authveteranhealth854bf56a"
+      }
     }
   }
 }

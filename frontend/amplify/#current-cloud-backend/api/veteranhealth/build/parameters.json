@@ -8,6 +8,12 @@
             "Outputs.UserPoolId"
         ]
     },
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
     "S3DeploymentBucket": "amplify-veteranhealth-vethealth-162532-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/7f667679bfffb7623bda9cc9239d7b9935c51080"
+    "S3DeploymentRootKey": "amplify-appsync-files/92b057ce72223274edc449017e0737f9ab359749"
 }

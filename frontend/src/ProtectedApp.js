@@ -14,11 +14,12 @@ import Cardio from "./pages/Workouts/Cardio";
 import Plyometrics from "./pages/Workouts/Plyometrics";
 import Strenght from "./pages/Workouts/Strenght";
 import Stretching from "./pages/Workouts/Stretching";
+import { VeteranProfile } from "./pages/VeteranProfile";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import '@aws-amplify/ui-react/styles.css';
+import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure(awsExports);
 
@@ -35,6 +36,7 @@ const ProtectedApp = ({ signOut, user }) => {
         <Route exact path="/plyometrics" element={<Plyometrics />} />
         <Route exact path="/strenght" element={<Strenght />} />
         <Route exact path="/stretching" element={<Stretching />} />
+        <Route exact path="/veteran_profile" element={<VeteranProfile />} />
       </Routes>
     </>
   );

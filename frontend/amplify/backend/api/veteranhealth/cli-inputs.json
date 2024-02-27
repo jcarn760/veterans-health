@@ -9,12 +9,13 @@
     },
     "additionalAuthTypes": [
       {
-        "mode": "API_KEY",
-        "expirationTime": 50,
-        "apiKeyExpirationDate": "2024-04-17T03:48:42.821Z",
-        "keyDescription": "vetHealth"
+        "mode": "AWS_IAM"
       }
     ],
-    "conflictResolution": {}
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "NONE"
+      }
+    }
   }
 }

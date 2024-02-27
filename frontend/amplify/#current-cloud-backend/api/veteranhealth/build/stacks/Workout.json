@@ -51,6 +51,24 @@
     },
     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
       "Type": "String"
+    },
+    "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserMutationcreateUserinit0FunctionMutationcreateUserinit0FunctionAppSyncFunction5CF77F6AFunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserMutationupdateUserinit0FunctionMutationupdateUserinit0FunctionAppSyncFunction90E2C98AFunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserSubscriptionOnCreateUserDataResolverFnSubscriptionOnCreateUserDataResolverFnAppSyncFunctionCAFEE24EFunctionId": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -382,36 +400,6 @@
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "Name": "QuerygetWorkoutpostAuth0Function",
-        "FunctionVersion": "2018-05-29",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Query.getWorkout.postAuth.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
-      }
-    },
     "QueryGetWorkoutDataResolverFnQueryGetWorkoutDataResolverFnAppSyncFunction6780D396": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
@@ -481,10 +469,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -506,7 +491,23 @@
               {
                 "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -582,10 +583,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -607,41 +605,27 @@
               {
                 "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
-      }
-    },
-    "MutationcreateWorkoutinit0FunctionMutationcreateWorkoutinit0FunctionAppSyncFunction2E628C69": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "Name": "MutationcreateWorkoutinit0Function",
-        "FunctionVersion": "2018-05-29",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Mutation.createWorkout.init.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "MutationcreateWorkoutauth0FunctionMutationcreateWorkoutauth0FunctionAppSyncFunction1C6DC6C1": {
@@ -737,10 +721,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Fn::GetAtt": [
-                "MutationcreateWorkoutinit0FunctionMutationcreateWorkoutinit0FunctionAppSyncFunction2E628C69",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserMutationcreateUserinit0FunctionMutationcreateUserinit0FunctionAppSyncFunction5CF77F6AFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -749,10 +730,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -774,41 +752,27 @@
               {
                 "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
-      }
-    },
-    "MutationupdateWorkoutinit0FunctionMutationupdateWorkoutinit0FunctionAppSyncFunction0496C9C0": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "Name": "MutationupdateWorkoutinit0Function",
-        "FunctionVersion": "2018-05-29",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Mutation.updateWorkout.init.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "MutationupdateWorkoutauth0FunctionMutationupdateWorkoutauth0FunctionAppSyncFunctionE686FE25": {
@@ -925,10 +889,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Fn::GetAtt": [
-                "MutationupdateWorkoutinit0FunctionMutationupdateWorkoutinit0FunctionAppSyncFunction0496C9C0",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserMutationupdateUserinit0FunctionMutationupdateUserinit0FunctionAppSyncFunction90E2C98AFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -937,10 +898,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -962,7 +920,23 @@
               {
                 "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1089,10 +1063,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1114,7 +1085,23 @@
               {
                 "Ref": "WorkoutTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1151,51 +1138,6 @@
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "Name": "SubscriptionOnCreateWorkoutDataResolverFn",
-        "FunctionVersion": "2018-05-29",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Subscription.onCreateWorkout.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Subscription.onCreateWorkout.res.vtl"
-            ]
-          ]
-        }
-      }
-    },
     "SubscriptiononCreateWorkoutResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
@@ -1214,16 +1156,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserSubscriptionOnCreateUserDataResolverFnSubscriptionOnCreateUserDataResolverFnAppSyncFunctionCAFEE24EFunctionId"
             }
           ]
         },
@@ -1235,7 +1171,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1260,16 +1212,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserSubscriptionOnCreateUserDataResolverFnSubscriptionOnCreateUserDataResolverFnAppSyncFunctionCAFEE24EFunctionId"
             }
           ]
         },
@@ -1281,7 +1227,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1306,16 +1268,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetWorkoutpostAuth0FunctionQuerygetWorkoutpostAuth0FunctionAppSyncFunctionCAF81A56",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserQuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction083DF5E5FunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateWorkoutDataResolverFnSubscriptionOnCreateWorkoutDataResolverFnAppSyncFunctionED1C9435",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackUserNestedStackUserNestedStackResource01084C14OutputstransformerrootstackUserSubscriptionOnCreateUserDataResolverFnSubscriptionOnCreateUserDataResolverFnAppSyncFunctionCAFEE24EFunctionId"
             }
           ]
         },
@@ -1327,7 +1283,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1406,7 +1378,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"us-east-1_WnNiEAnwf_Full-access/CognitoIdentityCredentials\",\"us-east-1_WnNiEAnwf_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
