@@ -1,20 +1,31 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   LinearProgress,
   Typography,
   Box,
-  Card,
-  Grid,
-  TextField,
   Button,
-  Stack,
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  Grid,
 } from "@mui/material";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import NavigationIcon from "@mui/icons-material/Navigation";
 import { Amplify } from "aws-amplify";
 import { generateClient } from "aws-amplify/api";
 import awsExports from "../aws-exports";
@@ -32,7 +43,7 @@ const client = generateClient();
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Box sx={{ width: "100%", mr: 1, pl: "10px", pl: "10px" }}>
+      <Box sx={{ width: "100%", mr: 1 }}>
         <LinearProgress variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
@@ -44,56 +55,14 @@ function LinearProgressWithLabel(props) {
   );
 }
 
-LinearProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number.isRequired,
-};
-
 export const Home = () => {
   const [progress, setProgress] = React.useState(10);
-
-  const [workout, setWorkout] = useState("");
-  const [feeling, setFeeling] = useState("");
-  const [weight, setWeight] = useState("");
   const [getWorkouts, setGetWorkout] = useState([]);
-
-  const handleWorkoutChange = (event) => {
-    setWorkout(event.target.value);
-  };
-
-  const handleFeelingChange = (event) => {
-    setFeeling(event.target.value);
-  };
-
-  const handleWeightChange = (event) => {
-    setWeight(event.target.value);
-  };
-
-  //Submit data to the DB
-  const handleWorkoutSubmit = async () => {
-    console.log("Submitting workout:", { workout, feeling });
-    setWorkout("");
-    setFeeling("");
-    try {
-      const result = await client.graphql({
-        query: createWorkout,
-        variables: {
-          input: {
-            workout_name: workout,
-            feel: feeling,
-          },
-        },
-      });
-      console.log(result); // Process the result as needed
-    } catch (error) {
-      console.error("Error adding todo", error);
-    }
-  };
-
-  //Get Data from the DB.
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [workoutName, setWorkoutName] = useState("");
+  const [workoutReps, setWorkoutReps] = useState("");
+  const [workoutTime, setWorkoutTime] = useState("");
+  const [feeling, setFeeling] = useState("Amazing");
 
   useEffect(() => {
     const handleWorkoutDisplay = async () => {
@@ -109,151 +78,167 @@ export const Home = () => {
     handleWorkoutDisplay();
   }, []);
 
-  const handleWeightSubmit = () => {
-    console.log("Submitting weight:", { weight });
-    setWeight("");
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+
+  //Submit data to the DB
+  const handleWorkoutSubmit = async () => {
+    console.log("Submitting workout:", { workoutName, feeling });
+    setWorkoutName("");
+    setFeeling("");
+    try {
+      const result = await client.graphql({
+        query: createWorkout,
+        variables: {
+          input: {
+            workout_name: workoutName,
+            feel: feeling,
+          },
+        },
+      });
+      console.log(result); // Process the result as needed
+    } catch (error) {
+      console.error("Error adding todo", error);
+    }
+
+    // Add your submit logic here
+    handleModalClose();
   };
 
   return (
     <>
-      <Box>
-        <Box textAlign="center">
-          <Typography variant="h3">Hello!</Typography>
-          <Typography variant="h6">How are you feeling today?</Typography>
-          {console.log(getWorkouts)}
-          {getWorkouts.map((getWorkout, index) => (
-            <div key={index}>
-              {getWorkout.workout_name} - {getWorkout.feel} -{" "}
-              {getWorkout.createdAt}
-            </div>
-          ))}
+      <Box textAlign="center" sx={{}}>
+        <Typography variant="h3">Hello, {"Users_name"}</Typography>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <LinearProgressWithLabel value={progress} sx={{ width: "50%" }} />
         </Box>
-        <Stack>
-          <Box pl="30%" pt="10%">
-            <Card style={{ width: "60%", padding: "20px" }}>
-              <Typography variant="h6">Your goal progress!</Typography>
-              <LinearProgressWithLabel value={progress} />
-              <Typography variant="subtitle1">
-                To change your goal head to account page.
-              </Typography>
-            </Card>
-          </Box>
-          <Box pl="30%" pt="3%">
-            <Accordion sx={{ width: "60%" }}>
-              <AccordionSummary
-                expandIcon={<ArrowDownwardIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <Typography variant="h5">Add Workout</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Box pl="3%">
-                  <Grid
-                    container
-                    spacing={2}
-                    style={{
-                      maxWidth: "550px",
-                      padding: "20px",
-                      borderRadius: "10px",
-                      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    <Grid item xs={12}>
-                      <Typography variant="h4" align="center" gutterBottom>
-                        Add Workout
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        id="workout"
-                        label="Your workout"
-                        variant="outlined"
-                        fullWidth
-                        value={workout}
-                        onChange={handleWorkoutChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        id="feeling"
-                        label="How are you feeling?"
-                        variant="outlined"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        value={feeling}
-                        onChange={handleFeelingChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        onClick={handleWorkoutSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion sx={{ width: "60%" }}>
-              <AccordionSummary
-                expandIcon={<ArrowDownwardIcon />}
-                aria-controls="panel2-content"
-                id="panel2-header"
-              >
-                <Typography variant="h5">Update Weight</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Box pl="3%">
-                  <Grid
-                    container
-                    spacing={2}
-                    style={{
-                      maxWidth: "550px",
-                      padding: "20px",
-                      borderRadius: "10px",
-                      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    <Grid item xs={12}>
-                      <Typography variant="h4" align="center" gutterBottom>
-                        New Weight
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        id="weight"
-                        label="Your weight"
-                        variant="outlined"
-                        fullWidth
-                        value={weight}
-                        onChange={handleWeightChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        onClick={handleWeightSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </AccordionDetails>
-            </Accordion>
-          </Box>
-        </Stack>
+        <Typography variant="h6" sx={{ mt: 2 }}>
+          How are you feeling today?
+        </Typography>
       </Box>
+
+      <Grid container spacing={2}>
+        <Grid item xs={5}>
+          <Box sx={{ position: "relative", m: 8 }}>
+            <Typography variant="h5" sx={{ textAlign: "center", pb: 7 }}>
+              Your Last Workouts
+            </Typography>
+            <Fab
+              color="primary"
+              aria-label="add"
+              onClick={handleModalOpen}
+              sx={{ position: "absolute", top: 25, right: 0 }}
+            >
+              <AddIcon />
+            </Fab>
+            <TableContainer component={Paper}>
+              <Table aria-label="workout table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Workout Name</TableCell>
+                    <TableCell align="right">Feeling</TableCell>
+                    <TableCell align="right">Date</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {getWorkouts.map((getWorkout, index) => (
+                    <TableRow key={index}>
+                      <TableCell component="th" scope="row">
+                        {getWorkout.workout_name}
+                      </TableCell>
+                      <TableCell align="right">{getWorkout.feel}</TableCell>
+                      <TableCell align="right">
+                        {getWorkout.createdAt}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </Grid>
+        <Grid item xs={8}></Grid>
+        <Modal
+          open={modalOpen}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Add Workout
+            </Typography>
+            <TextField
+              label="Workout Name"
+              variant="outlined"
+              fullWidth
+              value={workoutName}
+              onChange={(e) => setWorkoutName(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Repetitions"
+              variant="outlined"
+              fullWidth
+              value={workoutReps}
+              onChange={(e) => setWorkoutReps(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Time"
+              variant="outlined"
+              fullWidth
+              value={workoutTime}
+              onChange={(e) => setWorkoutTime(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <FormControl component="fieldset" sx={{ mt: 2 }}>
+              <FormLabel component="legend">How are you feeling?</FormLabel>
+              <RadioGroup
+                row
+                aria-label="feeling"
+                name="row-radio-buttons-group"
+                value={feeling}
+                onChange={(e) => setFeeling(e.target.value)}
+              >
+                <FormControlLabel
+                  value="Amazing"
+                  control={<Radio />}
+                  label="Amazing"
+                />
+                <FormControlLabel
+                  value="Okay"
+                  control={<Radio />}
+                  label="Okay"
+                />
+                <FormControlLabel
+                  value="Tired"
+                  control={<Radio />}
+                  label="Tired"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Button
+              variant="contained"
+              onClick={handleWorkoutSubmit}
+              sx={{ mt: 2 }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Modal>
+      </Grid>
     </>
   );
 };
