@@ -123,7 +123,8 @@ export const Home = () => {
           {console.log(getWorkouts)}
           {getWorkouts.map((getWorkout, index) => (
             <div key={index}>
-              {getWorkout.workout_name} - {getWorkout.feel}
+              {getWorkout.workout_name} - {getWorkout.feel} -{" "}
+              {getWorkout.createdAt}
             </div>
           ))}
         </Box>
