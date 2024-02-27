@@ -1,4 +1,4 @@
-type Todo {
+type veteranInfo {
   id: ID!
   name: String!
   description: String
@@ -157,65 +157,65 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelTodoConnection {
-  items: [Todo]!
+type ModelVeteranInfoConnection {
+  items: [veteranInfo]!
   nextToken: String
 }
 
-input ModelTodoFilterInput {
+input ModelVeteranInfoFilterInput {
   id: ModelIDInput
   name: ModelStringInput
   description: ModelStringInput
-  and: [ModelTodoFilterInput]
-  or: [ModelTodoFilterInput]
-  not: ModelTodoFilterInput
+  and: [ModelVeteranInfoFilterInput]
+  or: [ModelVeteranInfoFilterInput]
+  not: ModelVeteranInfoFilterInput
 }
 
 type Query {
-  getTodo(id: ID!): Todo
-  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  getVeteranInfo(id: ID!): veteranInfo
+  listVeteranInfos(filter: ModelVeteranInfoFilterInput, limit: Int, nextToken: String): ModelVeteranInfoConnection
 }
 
-input ModelTodoConditionInput {
+input ModelVeteranInfoConditionInput {
   name: ModelStringInput
   description: ModelStringInput
-  and: [ModelTodoConditionInput]
-  or: [ModelTodoConditionInput]
-  not: ModelTodoConditionInput
+  and: [ModelVeteranInfoConditionInput]
+  or: [ModelVeteranInfoConditionInput]
+  not: ModelVeteranInfoConditionInput
 }
 
-input CreateTodoInput {
+input CreateVeteranInfoInput {
   id: ID
   name: String!
   description: String
 }
 
-input UpdateTodoInput {
+input UpdateVeteranInfoInput {
   id: ID!
   name: String
   description: String
 }
 
-input DeleteTodoInput {
+input DeleteVeteranInfoInput {
   id: ID!
 }
 
 type Mutation {
-  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo
-  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo
-  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo
+  createVeteranInfo(input: CreateVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
+  updateVeteranInfo(input: UpdateVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
+  deleteVeteranInfo(input: DeleteVeteranInfoInput!, condition: ModelVeteranInfoConditionInput): veteranInfo
 }
 
-input ModelSubscriptionTodoFilterInput {
+input ModelSubscriptionVeteranInfoFilterInput {
   id: ModelSubscriptionIDInput
   name: ModelSubscriptionStringInput
   description: ModelSubscriptionStringInput
-  and: [ModelSubscriptionTodoFilterInput]
-  or: [ModelSubscriptionTodoFilterInput]
+  and: [ModelSubscriptionVeteranInfoFilterInput]
+  or: [ModelSubscriptionVeteranInfoFilterInput]
 }
 
 type Subscription {
-  onCreateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["createTodo"])
-  onUpdateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["updateTodo"])
-  onDeleteTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"])
+  onCreateVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["createVeteranInfo"])
+  onUpdateVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["updateVeteranInfo"])
+  onDeleteVeteranInfo(filter: ModelSubscriptionVeteranInfoFilterInput, owner: String): veteranInfo @aws_subscribe(mutations: ["deleteVeteranInfo"])
 }

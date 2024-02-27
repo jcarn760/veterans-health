@@ -92,7 +92,7 @@
     }
   },
   "Resources": {
-    "TodoTable": {
+    "veteranInfoTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "KeySchema": [
@@ -159,7 +159,7 @@
           "Fn::Join": [
             "",
             [
-              "Todo-",
+              "veteranInfo-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -174,7 +174,7 @@
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete"
     },
-    "TodoIAMRole2DA8E66E": {
+    "veteranInfoIAMRoleEA4C2FB9": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -193,7 +193,7 @@
           "Fn::Join": [
             "",
             [
-              "TodoIAMRolecfd440-",
+              "veteranInfoIAMRoleaf1608-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -206,7 +206,7 @@
         }
       }
     },
-    "TodoIAMRoleDefaultPolicy7BBBF45B": {
+    "veteranInfoIAMRoleDefaultPolicyB269E998": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -230,7 +230,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "TodoTable",
+                    "veteranInfoTable",
                     "Arn"
                   ]
                 },
@@ -242,10 +242,10 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "TodoIAMRoleDefaultPolicy7BBBF45B",
+        "PolicyName": "veteranInfoIAMRoleDefaultPolicyB269E998",
         "Roles": [
           {
-            "Ref": "TodoIAMRole2DA8E66E"
+            "Ref": "veteranInfoIAMRoleEA4C2FB9"
           }
         ]
       }
@@ -276,7 +276,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "Todo-",
+                            "veteranInfo-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -298,7 +298,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "Todo-",
+                            "veteranInfo-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -320,39 +320,39 @@
         "PolicyName": "DynamoDBAccess71ABE5AE",
         "Roles": [
           {
-            "Ref": "TodoIAMRole2DA8E66E"
+            "Ref": "veteranInfoIAMRoleEA4C2FB9"
           }
         ]
       }
     },
-    "TodoDataSource": {
+    "veteranInfoDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "Name": "TodoTable",
+        "Name": "veteranInfoTable",
         "Type": "AMAZON_DYNAMODB",
         "DynamoDBConfig": {
           "AwsRegion": {
             "Ref": "AWS::Region"
           },
           "TableName": {
-            "Ref": "TodoTable"
+            "Ref": "veteranInfoTable"
           }
         },
         "ServiceRoleArn": {
           "Fn::GetAtt": [
-            "TodoIAMRole2DA8E66E",
+            "veteranInfoIAMRoleEA4C2FB9",
             "Arn"
           ]
         }
       },
       "DependsOn": [
-        "TodoIAMRole2DA8E66E"
+        "veteranInfoIAMRoleEA4C2FB9"
       ]
     },
-    "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436": {
+    "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -361,7 +361,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "QuerygetTodoauth0Function",
+        "Name": "QuerygetVeteranInfoauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -375,14 +375,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTodo.auth.1.req.vtl"
+              "/resolvers/Query.getVeteranInfo.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593": {
+    "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -391,7 +391,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "QuerygetTodopostAuth0Function",
+        "Name": "QuerygetVeteranInfopostAuth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -405,14 +405,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTodo.postAuth.1.req.vtl"
+              "/resolvers/Query.getVeteranInfo.postAuth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QueryGetTodoDataResolverFnQueryGetTodoDataResolverFnAppSyncFunctionE2B57DAD": {
+    "QueryGetVeteranInfoDataResolverFnQueryGetVeteranInfoDataResolverFnAppSyncFunction0B82C705": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -420,11 +420,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "QueryGetTodoDataResolverFn",
+        "Name": "QueryGetVeteranInfoDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -438,7 +438,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTodo.req.vtl"
+              "/resolvers/Query.getVeteranInfo.req.vtl"
             ]
           ]
         },
@@ -454,41 +454,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTodo.res.vtl"
+              "/resolvers/Query.getVeteranInfo.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "GetTodoResolver": {
+    "GetveteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "getTodo",
+        "FieldName": "getVeteranInfo",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436",
+                "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QueryGetTodoDataResolverFnQueryGetTodoDataResolverFnAppSyncFunctionE2B57DAD",
+                "QueryGetVeteranInfoDataResolverFnQueryGetVeteranInfoDataResolverFnAppSyncFunction0B82C705",
                 "FunctionId"
               ]
             }
@@ -498,22 +498,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TodoTable"
+                "Ref": "veteranInfoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "QueryListTodosDataResolverFnQueryListTodosDataResolverFnAppSyncFunctionF825FE47": {
+    "QueryListVeteranInfosDataResolverFnQueryListVeteranInfosDataResolverFnAppSyncFunctionA40A6C6B": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -521,11 +521,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "QueryListTodosDataResolverFn",
+        "Name": "QueryListVeteranInfosDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -539,7 +539,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listTodos.req.vtl"
+              "/resolvers/Query.listVeteranInfos.req.vtl"
             ]
           ]
         },
@@ -555,41 +555,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listTodos.res.vtl"
+              "/resolvers/Query.listVeteranInfos.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "ListTodoResolver": {
+    "ListveteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "listTodos",
+        "FieldName": "listVeteranInfos",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436",
+                "QuerygetVeteranInfoauth0FunctionQuerygetVeteranInfoauth0FunctionAppSyncFunction0F96823B",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QueryListTodosDataResolverFnQueryListTodosDataResolverFnAppSyncFunctionF825FE47",
+                "QueryListVeteranInfosDataResolverFnQueryListVeteranInfosDataResolverFnAppSyncFunctionA40A6C6B",
                 "FunctionId"
               ]
             }
@@ -599,22 +599,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listTodos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listVeteranInfos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TodoTable"
+                "Ref": "veteranInfoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationcreateTodoinit0FunctionMutationcreateTodoinit0FunctionAppSyncFunction54DE5B8B": {
+    "MutationcreateVeteranInfoinit0FunctionMutationcreateVeteranInfoinit0FunctionAppSyncFunctionC39F2FC1": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -623,7 +623,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationcreateTodoinit0Function",
+        "Name": "MutationcreateVeteranInfoinit0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -637,14 +637,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTodo.init.1.req.vtl"
+              "/resolvers/Mutation.createVeteranInfo.init.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationcreateTodoauth0FunctionMutationcreateTodoauth0FunctionAppSyncFunction21817E36": {
+    "MutationcreateVeteranInfoauth0FunctionMutationcreateVeteranInfoauth0FunctionAppSyncFunction1A304774": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -653,7 +653,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationcreateTodoauth0Function",
+        "Name": "MutationcreateVeteranInfoauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -667,14 +667,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.createVeteranInfo.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationCreateTodoDataResolverFnMutationCreateTodoDataResolverFnAppSyncFunction900EC5CF": {
+    "MutationCreateVeteranInfoDataResolverFnMutationCreateVeteranInfoDataResolverFnAppSyncFunction8481F0B8": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -682,11 +682,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "MutationCreateTodoDataResolverFn",
+        "Name": "MutationCreateVeteranInfoDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -700,7 +700,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTodo.req.vtl"
+              "/resolvers/Mutation.createVeteranInfo.req.vtl"
             ]
           ]
         },
@@ -716,47 +716,47 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTodo.res.vtl"
+              "/resolvers/Mutation.createVeteranInfo.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "CreateTodoResolver": {
+    "CreateveteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "createTodo",
+        "FieldName": "createVeteranInfo",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationcreateTodoinit0FunctionMutationcreateTodoinit0FunctionAppSyncFunction54DE5B8B",
+                "MutationcreateVeteranInfoinit0FunctionMutationcreateVeteranInfoinit0FunctionAppSyncFunctionC39F2FC1",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationcreateTodoauth0FunctionMutationcreateTodoauth0FunctionAppSyncFunction21817E36",
+                "MutationcreateVeteranInfoauth0FunctionMutationcreateVeteranInfoauth0FunctionAppSyncFunction1A304774",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationCreateTodoDataResolverFnMutationCreateTodoDataResolverFnAppSyncFunction900EC5CF",
+                "MutationCreateVeteranInfoDataResolverFnMutationCreateVeteranInfoDataResolverFnAppSyncFunction8481F0B8",
                 "FunctionId"
               ]
             }
@@ -766,22 +766,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TodoTable"
+                "Ref": "veteranInfoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationupdateTodoinit0FunctionMutationupdateTodoinit0FunctionAppSyncFunction1B95BB19": {
+    "MutationupdateVeteranInfoinit0FunctionMutationupdateVeteranInfoinit0FunctionAppSyncFunctionA63F96AE": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -790,7 +790,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "MutationupdateTodoinit0Function",
+        "Name": "MutationupdateVeteranInfoinit0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -804,14 +804,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTodo.init.1.req.vtl"
+              "/resolvers/Mutation.updateVeteranInfo.init.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationupdateTodoauth0FunctionMutationupdateTodoauth0FunctionAppSyncFunction1E4A3112": {
+    "MutationupdateVeteranInfoauth0FunctionMutationupdateVeteranInfoauth0FunctionAppSyncFunction9ADE3A00": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -819,11 +819,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "MutationupdateTodoauth0Function",
+        "Name": "MutationupdateVeteranInfoauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -837,7 +837,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.updateVeteranInfo.auth.1.req.vtl"
             ]
           ]
         },
@@ -853,16 +853,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTodo.auth.1.res.vtl"
+              "/resolvers/Mutation.updateVeteranInfo.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "MutationUpdateTodoDataResolverFnMutationUpdateTodoDataResolverFnAppSyncFunctionBC238C49": {
+    "MutationUpdateVeteranInfoDataResolverFnMutationUpdateVeteranInfoDataResolverFnAppSyncFunction1E586549": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -870,11 +870,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "MutationUpdateTodoDataResolverFn",
+        "Name": "MutationUpdateVeteranInfoDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -888,7 +888,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTodo.req.vtl"
+              "/resolvers/Mutation.updateVeteranInfo.req.vtl"
             ]
           ]
         },
@@ -904,47 +904,47 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTodo.res.vtl"
+              "/resolvers/Mutation.updateVeteranInfo.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "UpdateTodoResolver": {
+    "UpdateveteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "updateTodo",
+        "FieldName": "updateVeteranInfo",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationupdateTodoinit0FunctionMutationupdateTodoinit0FunctionAppSyncFunction1B95BB19",
+                "MutationupdateVeteranInfoinit0FunctionMutationupdateVeteranInfoinit0FunctionAppSyncFunctionA63F96AE",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationupdateTodoauth0FunctionMutationupdateTodoauth0FunctionAppSyncFunction1E4A3112",
+                "MutationupdateVeteranInfoauth0FunctionMutationupdateVeteranInfoauth0FunctionAppSyncFunction9ADE3A00",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationUpdateTodoDataResolverFnMutationUpdateTodoDataResolverFnAppSyncFunctionBC238C49",
+                "MutationUpdateVeteranInfoDataResolverFnMutationUpdateVeteranInfoDataResolverFnAppSyncFunction1E586549",
                 "FunctionId"
               ]
             }
@@ -954,22 +954,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TodoTable"
+                "Ref": "veteranInfoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationdeleteTodoauth0FunctionMutationdeleteTodoauth0FunctionAppSyncFunctionC82C218C": {
+    "MutationdeleteVeteranInfoauth0FunctionMutationdeleteVeteranInfoauth0FunctionAppSyncFunction23985972": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -977,11 +977,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "MutationdeleteTodoauth0Function",
+        "Name": "MutationdeleteVeteranInfoauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -995,7 +995,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.deleteVeteranInfo.auth.1.req.vtl"
             ]
           ]
         },
@@ -1011,16 +1011,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTodo.auth.1.res.vtl"
+              "/resolvers/Mutation.deleteVeteranInfo.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "MutationDeleteTodoDataResolverFnMutationDeleteTodoDataResolverFnAppSyncFunction3879153F": {
+    "MutationDeleteVeteranInfoDataResolverFnMutationDeleteVeteranInfoDataResolverFnAppSyncFunctionBC6028A0": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1028,11 +1028,11 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TodoDataSource",
+            "veteranInfoDataSource",
             "Name"
           ]
         },
-        "Name": "MutationDeleteTodoDataResolverFn",
+        "Name": "MutationDeleteVeteranInfoDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1046,7 +1046,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTodo.req.vtl"
+              "/resolvers/Mutation.deleteVeteranInfo.req.vtl"
             ]
           ]
         },
@@ -1062,41 +1062,41 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTodo.res.vtl"
+              "/resolvers/Mutation.deleteVeteranInfo.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TodoDataSource"
+        "veteranInfoDataSource"
       ]
     },
-    "DeleteTodoResolver": {
+    "DeleteveteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "deleteTodo",
+        "FieldName": "deleteVeteranInfo",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationdeleteTodoauth0FunctionMutationdeleteTodoauth0FunctionAppSyncFunctionC82C218C",
+                "MutationdeleteVeteranInfoauth0FunctionMutationdeleteVeteranInfoauth0FunctionAppSyncFunction23985972",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "MutationDeleteTodoDataResolverFnMutationDeleteTodoDataResolverFnAppSyncFunction3879153F",
+                "MutationDeleteVeteranInfoDataResolverFnMutationDeleteVeteranInfoDataResolverFnAppSyncFunctionBC6028A0",
                 "FunctionId"
               ]
             }
@@ -1106,22 +1106,22 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TodoTable"
+                "Ref": "veteranInfoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1": {
+    "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1130,7 +1130,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "SubscriptiononCreateTodoauth0Function",
+        "Name": "SubscriptiononCreateVeteranInfoauth0Function",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1144,14 +1144,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateTodo.auth.1.req.vtl"
+              "/resolvers/Subscription.onCreateVeteranInfo.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "SubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunction462A70C9": {
+    "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1160,7 +1160,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "SubscriptionOnCreateTodoDataResolverFn",
+        "Name": "SubscriptionOnCreateVeteranInfoDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1174,7 +1174,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateTodo.req.vtl"
+              "/resolvers/Subscription.onCreateVeteranInfo.req.vtl"
             ]
           ]
         },
@@ -1190,38 +1190,38 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Subscription.onCreateTodo.res.vtl"
+              "/resolvers/Subscription.onCreateVeteranInfo.res.vtl"
             ]
           ]
         }
       }
     },
-    "SubscriptiononCreateTodoResolver": {
+    "SubscriptiononCreateVeteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onCreateTodo",
+        "FieldName": "onCreateVeteranInfo",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunction462A70C9",
+                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
                 "FunctionId"
               ]
             }
@@ -1231,43 +1231,43 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononUpdateTodoResolver": {
+    "SubscriptiononUpdateVeteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onUpdateTodo",
+        "FieldName": "onUpdateVeteranInfo",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunction462A70C9",
+                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
                 "FunctionId"
               ]
             }
@@ -1277,43 +1277,43 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononDeleteTodoResolver": {
+    "SubscriptiononDeleteVeteranInfoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onDeleteTodo",
+        "FieldName": "onDeleteVeteranInfo",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "SubscriptiononCreateVeteranInfoauth0FunctionSubscriptiononCreateVeteranInfoauth0FunctionAppSyncFunctionDD9E8084",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
+                "QuerygetVeteranInfopostAuth0FunctionQuerygetVeteranInfopostAuth0FunctionAppSyncFunction0C51CBF4",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "SubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunction462A70C9",
+                "SubscriptionOnCreateVeteranInfoDataResolverFnSubscriptionOnCreateVeteranInfoDataResolverFnAppSyncFunctionB3EBEA88",
                 "FunctionId"
               ]
             }
@@ -1323,18 +1323,18 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteVeteranInfo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "TodoOwnerDataResolverFnTodoOwnerDataResolverFnAppSyncFunction0C7BF45B": {
+    "VeteranInfoOwnerDataResolverFnVeteranInfoOwnerDataResolverFnAppSyncFunction617C96F1": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1343,7 +1343,7 @@
         "DataSourceName": {
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
-        "Name": "TodoOwnerDataResolverFn",
+        "Name": "VeteranInfoOwnerDataResolverFn",
         "FunctionVersion": "2018-05-29",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
@@ -1357,7 +1357,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.owner.req.vtl"
+              "/resolvers/veteranInfo.owner.req.vtl"
             ]
           ]
         },
@@ -1373,26 +1373,26 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.owner.res.vtl"
+              "/resolvers/veteranInfo.owner.res.vtl"
             ]
           ]
         }
       }
     },
-    "TodoownerResolver": {
+    "veteranInfoownerResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "FieldName": "owner",
-        "TypeName": "Todo",
+        "TypeName": "veteranInfo",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "TodoOwnerDataResolverFnTodoOwnerDataResolverFnAppSyncFunction0C7BF45B",
+                "VeteranInfoOwnerDataResolverFnVeteranInfoOwnerDataResolverFnAppSyncFunction617C96F1",
                 "FunctionId"
               ]
             }
@@ -1402,11 +1402,11 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"veteranInfo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"identityPoolId\", \"us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
             ]
           ]
         },
@@ -1415,11 +1415,11 @@
     }
   },
   "Outputs": {
-    "GetAttTodoTableStreamArn": {
+    "GetAttveteranInfoTableStreamArn": {
       "Description": "Your DynamoDB table StreamArn.",
       "Value": {
         "Fn::GetAtt": [
-          "TodoTable",
+          "veteranInfoTable",
           "StreamArn"
         ]
       },
@@ -1431,16 +1431,16 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TodoTable:StreamArn"
+              "GetAtt:veteranInfoTable:StreamArn"
             ]
           ]
         }
       }
     },
-    "GetAttTodoTableName": {
+    "GetAttveteranInfoTableName": {
       "Description": "Your DynamoDB table name.",
       "Value": {
-        "Ref": "TodoTable"
+        "Ref": "veteranInfoTable"
       },
       "Export": {
         "Name": {
@@ -1450,17 +1450,17 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TodoTable:Name"
+              "GetAtt:veteranInfoTable:Name"
             ]
           ]
         }
       }
     },
-    "GetAttTodoDataSourceName": {
+    "GetAttveteranInfoDataSourceName": {
       "Description": "Your model DataSource name.",
       "Value": {
         "Fn::GetAtt": [
-          "TodoDataSource",
+          "veteranInfoDataSource",
           "Name"
         ]
       },
@@ -1472,7 +1472,7 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TodoDataSource:Name"
+              "GetAtt:veteranInfoDataSource:Name"
             ]
           ]
         }

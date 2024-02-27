@@ -19,6 +19,7 @@ import config from "./amplifyconfiguration.json";
 import { createTodo, updateTodo, deleteTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import { useEffect } from "react";
+
 Amplify.configure(config);
 
 const client = generateClient();
@@ -44,6 +45,16 @@ export const App = ({ signOut, user }) => {
       }
     };
 
+    const listTodo = async () => {
+      try {
+        const result = await client.graphql({ query: listTodos });
+        console.log("List To Do");
+        console.log(result);
+      } catch (error) {
+        console.error("Error adding todo", error);
+      }
+    };
+    listTodo();
     addTodo(); // Call the async function
   }, []); // Empty dependency array means this effect runs once on mount
 
