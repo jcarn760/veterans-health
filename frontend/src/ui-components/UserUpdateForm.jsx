@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getUser } from "../graphql/queries";
@@ -32,6 +38,7 @@ export default function UserUpdateForm(props) {
     weigth: "",
     gender: "",
     health_goal: "",
+    profile: false,
   };
   const [first_name, setFirst_name] = React.useState(initialValues.first_name);
   const [last_name, setLast_name] = React.useState(initialValues.last_name);
@@ -42,6 +49,7 @@ export default function UserUpdateForm(props) {
   const [health_goal, setHealth_goal] = React.useState(
     initialValues.health_goal
   );
+  const [profile, setProfile] = React.useState(initialValues.profile);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -54,6 +62,7 @@ export default function UserUpdateForm(props) {
     setWeigth(cleanValues.weigth);
     setGender(cleanValues.gender);
     setHealth_goal(cleanValues.health_goal);
+    setProfile(cleanValues.profile);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -80,6 +89,7 @@ export default function UserUpdateForm(props) {
     weigth: [],
     gender: [],
     health_goal: [],
+    profile: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -114,6 +124,7 @@ export default function UserUpdateForm(props) {
           weigth: weigth ?? null,
           gender: gender ?? null,
           health_goal: health_goal ?? null,
+          profile: profile ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -181,6 +192,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.first_name ?? value;
@@ -211,6 +223,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.last_name ?? value;
@@ -242,6 +255,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.date_birth ?? value;
@@ -276,6 +290,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.height ?? value;
@@ -310,6 +325,7 @@ export default function UserUpdateForm(props) {
               weigth: value,
               gender,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.weigth ?? value;
@@ -340,6 +356,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender: value,
               health_goal,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.gender ?? value;
@@ -370,6 +387,7 @@ export default function UserUpdateForm(props) {
               weigth,
               gender,
               health_goal: value,
+              profile,
             };
             const result = onChange(modelFields);
             value = result?.health_goal ?? value;
@@ -384,6 +402,37 @@ export default function UserUpdateForm(props) {
         hasError={errors.health_goal?.hasError}
         {...getOverrideProps(overrides, "health_goal")}
       ></TextField>
+      <SwitchField
+        label="Profile"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={profile}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              first_name,
+              last_name,
+              date_birth,
+              height,
+              weigth,
+              gender,
+              health_goal,
+              profile: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.profile ?? value;
+          }
+          if (errors.profile?.hasError) {
+            runValidationTasks("profile", value);
+          }
+          setProfile(value);
+        }}
+        onBlur={() => runValidationTasks("profile", profile)}
+        errorMessage={errors.profile?.errorMessage}
+        hasError={errors.profile?.hasError}
+        {...getOverrideProps(overrides, "profile")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

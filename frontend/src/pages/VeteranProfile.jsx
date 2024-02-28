@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TextField,
   Button,
@@ -7,14 +7,65 @@ import {
   Container,
   Grid,
 } from "@mui/material";
+import { createUser, updateUser, deleteWorkout } from "../graphql/mutations";
+import { listWorkouts } from "../graphql/queries";
+import { generateClient } from "aws-amplify/api";
 
+const client = generateClient();
 export const VeteranProfile = () => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    date_birth: "",
+    height: "",
+    weight: "",
+    gender: "",
+    health_goal: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formData);
+  };
+
+  //   Submit data to the DB
+  const handleWorkoutSubmit = async () => {
+    const newUser = await client.graphql({
+      query: createUser,
+      variables: {
+        input: {
+          first_name: "Lorem ipsum dolor sit amet",
+          last_name: "Lorem ipsum dolor sit amet",
+          date_birth: "1970-01-01Z",
+          height: 123.45,
+          weigth: 123.45,
+          gender: "Lorem ipsum dolor sit amet",
+          health_goal: "Lorem ipsum dolor sit amet",
+          profile: true,
+        },
+      },
+    });
+  };
+
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>
         Profile
       </Typography>
-      <Box component="form" noValidate autoComplete="off">
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -23,6 +74,8 @@ export const VeteranProfile = () => {
               label="First Name"
               name="first_name"
               variant="outlined"
+              value={formData.first_name}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -32,6 +85,8 @@ export const VeteranProfile = () => {
               label="Last Name"
               name="last_name"
               variant="outlined"
+              value={formData.last_name}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -43,6 +98,8 @@ export const VeteranProfile = () => {
               type="date"
               InputLabelProps={{ shrink: true }}
               variant="outlined"
+              value={formData.date_birth}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -53,6 +110,8 @@ export const VeteranProfile = () => {
               name="height"
               type="number"
               variant="outlined"
+              value={formData.height}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -63,6 +122,8 @@ export const VeteranProfile = () => {
               name="weight"
               type="number"
               variant="outlined"
+              value={formData.weight}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -74,6 +135,8 @@ export const VeteranProfile = () => {
               variant="outlined"
               select
               SelectProps={{ native: true }}
+              value={formData.gender}
+              onChange={handleChange}
             >
               <option value=""></option>
               <option value="Male">Male</option>
@@ -90,6 +153,8 @@ export const VeteranProfile = () => {
               variant="outlined"
               multiline
               rows={4}
+              value={formData.health_goal}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>

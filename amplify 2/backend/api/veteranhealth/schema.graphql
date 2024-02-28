@@ -7,11 +7,11 @@ type User @model @auth(rules: [{allow: private}]) {
   weigth: Float
   gender: String
   health_goal: String
-  profile: Boolean
 }
 
 type Workout @model @auth(rules: [{allow: owner}]) {
   id: ID!
   workout_name: String!
   feel: String!
-} 
+}
+ 

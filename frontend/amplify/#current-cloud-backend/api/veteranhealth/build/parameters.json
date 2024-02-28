@@ -15,5 +15,5 @@
         "Ref": "UnauthRoleName"
     },
     "S3DeploymentBucket": "amplify-veteranhealth-vethealth-162532-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/92b057ce72223274edc449017e0737f9ab359749"
+    "S3DeploymentRootKey": "amplify-appsync-files/560e4bcbdcbd15b9277c8dd6a16252e589909fb9"
 }

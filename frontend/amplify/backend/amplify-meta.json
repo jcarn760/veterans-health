@@ -42,12 +42,11 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2024-02-27T04:31:10.208Z",
+      "lastPushTimeStamp": "2024-02-28T19:14:10.409Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiveteranhealth"
-      },
-      "lastPushDirHash": "naC7XgeEwYP1ua3nC9HqV5lyaTw="
+      }
     }
   },
   "auth": {
@@ -85,7 +84,7 @@
         "IdentityPoolName": "veteranhealth854bf56a_identitypool_854bf56a__vethealth",
         "UserPoolName": "veteranhealth854bf56a_userpool_854bf56a"
       },
-      "lastPushTimeStamp": "2024-02-27T04:31:10.210Z",
+      "lastPushTimeStamp": "2024-02-28T19:14:10.410Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
         "logicalId": "authveteranhealth854bf56a"
