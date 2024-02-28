@@ -67,7 +67,7 @@ export const Home = () => {
   const [workoutReps, setWorkoutReps] = useState("");
   const [workoutTime, setWorkoutTime] = useState("");
   const [feeling, setFeeling] = useState("Amazing");
-
+  //Get data from DB
   useEffect(() => {
     const handleWorkoutDisplay = async () => {
       try {

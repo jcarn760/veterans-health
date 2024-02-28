@@ -33,26 +33,34 @@ export const VeteranProfile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    console.log(formData.first_name);
   };
 
   //   Submit data to the DB
-  const handleWorkoutSubmit = async () => {
-    const newUser = await client.graphql({
-      query: createUser,
-      variables: {
-        input: {
-          first_name: "Lorem ipsum dolor sit amet",
-          last_name: "Lorem ipsum dolor sit amet",
-          date_birth: "1970-01-01Z",
-          height: 123.45,
-          weigth: 123.45,
-          gender: "Lorem ipsum dolor sit amet",
-          health_goal: "Lorem ipsum dolor sit amet",
-          profile: true,
+  const handleUserSubmit = async (event) => {
+    console.log("Press Submit");
+    event.preventDefault();
+    console.log(formData);
+    try {
+      const newUser = await client.graphql({
+        query: createUser,
+        variables: {
+          input: {
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            date_birth: formData.date_birth,
+            height: formData.height,
+            weigth: formData.weight,
+            gender: formData.gender,
+            health_goal: formData.health_goal,
+            profile: true,
+          },
         },
-      },
-    });
+      });
+      console.log(newUser); // Process the result as needed
+    } catch (error) {
+      console.error("Error adding todo", error);
+    }
   };
 
   return (
@@ -64,7 +72,7 @@ export const VeteranProfile = () => {
         component="form"
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit}
+        onSubmit={handleUserSubmit}
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
