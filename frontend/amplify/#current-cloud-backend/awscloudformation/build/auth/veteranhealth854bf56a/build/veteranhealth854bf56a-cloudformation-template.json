@@ -1,5 +1,5 @@
 {
-  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.10.1\",\"stackType\":\"auth-Cognito\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.10.1\",\"stackType\":\"auth-Cognito\",\"metadata\":{}}",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "env": {
@@ -348,6 +348,48 @@
         "IdentityPoolId": {
           "Ref": "IdentityPool"
         },
+        "RoleMappings": {
+          "UserPoolClientRoleMapping": {
+            "AmbiguousRoleResolution": "AuthenticatedRole",
+            "IdentityProvider": {
+              "Fn::Sub": [
+                "cognito-idp.${region}.amazonaws.com/${userPool}:${client}",
+                {
+                  "region": {
+                    "Ref": "AWS::Region"
+                  },
+                  "userPool": {
+                    "Ref": "UserPool"
+                  },
+                  "client": {
+                    "Ref": "UserPoolClient"
+                  }
+                }
+              ]
+            },
+            "Type": "Token"
+          },
+          "UserPoolWebClientRoleMapping": {
+            "AmbiguousRoleResolution": "AuthenticatedRole",
+            "IdentityProvider": {
+              "Fn::Sub": [
+                "cognito-idp.${region}.amazonaws.com/${userPool}:${webClient}",
+                {
+                  "region": {
+                    "Ref": "AWS::Region"
+                  },
+                  "userPool": {
+                    "Ref": "UserPool"
+                  },
+                  "webClient": {
+                    "Ref": "UserPoolClientWeb"
+                  }
+                }
+              ]
+            },
+            "Type": "Token"
+          }
+        },
         "Roles": {
           "unauthenticated": {
             "Ref": "unauthRoleArn"
@@ -358,7 +400,9 @@
         }
       },
       "DependsOn": [
-        "IdentityPool"
+        "IdentityPool",
+        "UserPoolClient",
+        "UserPoolClientWeb"
       ]
     }
   },

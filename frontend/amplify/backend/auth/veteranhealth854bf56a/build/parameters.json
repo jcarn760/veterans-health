@@ -38,7 +38,10 @@
   "usernameAttributes": [
     "email"
   ],
-  "userPoolGroupList": [],
+  "userPoolGroupList": [
+    "users",
+    "adminusers"
+  ],
   "serviceName": "Cognito",
   "usernameCaseSensitive": false,
   "useEnabledMfas": true,

@@ -3,5 +3,10 @@
     "configLevel": "project",
     "useProfile": true,
     "profileName": "jaycarn-amplify"
+  },
+  "vethealth": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\Moose\\.amplify\\awscloudformation\\Gwe6Qdcf7d"
   }
 }

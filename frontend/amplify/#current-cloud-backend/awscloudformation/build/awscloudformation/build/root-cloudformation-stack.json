@@ -155,7 +155,7 @@
     "authveteranhealth854bf56a": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-dev-143511-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-134311-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
         "Parameters": {
           "identityPoolName": "veteranhealth854bf56a_identitypool_854bf56a",
           "allowUnauthenticatedIdentities": false,
@@ -184,7 +184,7 @@
           "authSelections": "identityPoolAndUserPool",
           "useDefault": "default",
           "usernameAttributes": "email",
-          "userPoolGroupList": "",
+          "userPoolGroupList": "users,adminusers",
           "serviceName": "Cognito",
           "usernameCaseSensitive": false,
           "useEnabledMfas": true,
@@ -202,7 +202,52 @@
           },
           "breakCircularDependency": true,
           "dependsOn": "",
-          "env": "dev"
+          "env": "vethealth"
+        }
+      }
+    },
+    "authuserPoolGroups": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-134311-deployment/amplify-cfn-templates/auth/userPoolGroups-cloudformation-template.json",
+        "Parameters": {
+          "AuthRoleArn": {
+            "Fn::GetAtt": [
+              "AuthRole",
+              "Arn"
+            ]
+          },
+          "UnauthRoleArn": {
+            "Fn::GetAtt": [
+              "UnauthRole",
+              "Arn"
+            ]
+          },
+          "authveteranhealth854bf56aUserPoolId": {
+            "Fn::GetAtt": [
+              "authveteranhealth854bf56a",
+              "Outputs.UserPoolId"
+            ]
+          },
+          "authveteranhealth854bf56aAppClientIDWeb": {
+            "Fn::GetAtt": [
+              "authveteranhealth854bf56a",
+              "Outputs.AppClientIDWeb"
+            ]
+          },
+          "authveteranhealth854bf56aAppClientID": {
+            "Fn::GetAtt": [
+              "authveteranhealth854bf56a",
+              "Outputs.AppClientID"
+            ]
+          },
+          "authveteranhealth854bf56aIdentityPoolId": {
+            "Fn::GetAtt": [
+              "authveteranhealth854bf56a",
+              "Outputs.IdentityPoolId"
+            ]
+          },
+          "env": "vethealth"
         }
       }
     },
