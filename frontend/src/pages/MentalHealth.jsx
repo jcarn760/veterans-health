@@ -40,20 +40,43 @@ export function MentalHealth() {
       <Box>
         <Typography variant="h2">Veterans Resources</Typography>
         <Typography variant="body1">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam. Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
+        
+        <p> There are many veteran resources to help with mental health disparities. </p>
+        
+         <p>1. Department of Veterans Affairs (VA) Mental Health Services: 
+          The VA provides a range of mental health services for veterans including counseling, 
+          therapy, and psychiatric medication management. 
+          They have Vet Centers across the country that offer individual and group counseling.</p>
+        
+         <p>2. Veterans Crisis Line: This is a confidential toll-free hotline (1-800-273-8255) 
+          that veterans can call for immediate crisis intervention. 
+          They also offer a text messaging service (send a text to 838255) and 
+          online chat for support.</p>
+
+        <p>3. Veterans Service Organizations (VSOs): Organizations like the Veterans of Foreign Wars (VFW),
+          American Legion, and Disabled American Veterans (DAV) often provide resources
+          and support for veterans' mental health needs. They may offer counseling, peer support groups, 
+          and assistance navigating VA benefits.</p>
+
+        <p>4. Military OneSource: This is a Department of Defense-funded program that provides
+         a range of support services to service members and their families, 
+         including confidential non-medical counseling for a variety of issues, including mental health.</p>
+
+        <p>5. Community Mental Health Centers: Many communities have mental health centers that offer counseling 
+          and therapy services, some of which may be tailored specifically for veterans.</p>
+
+        <p>6. Online Resources: Websites like MakeTheConnection.net, operated by the VA, offer resources, videos, 
+          and personal stories related to mental health challenges faced by veterans. 
+          There are also online support groups and forums where veterans
+          can connect with others who have had similar experiences.</p>
+
+        <p>7. Peer Support Programs: Programs like the VA's Peer Specialist program train veterans who have successfully 
+          dealt with mental health challenges to provide support and mentorship to their fellow veterans.</p>
+
+        <p>8. Employment and Education Assistance: Programs that assist veterans with finding employment or furthering 
+          their education can indirectly support mental health by providing a sense of purpose and stability.</p>
         </Typography>
       </Box>
-
       <Box
         sx={{
           display: "flex",
@@ -111,7 +134,7 @@ export function MentalHealth() {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography paragraph>What Causes PTSD?</Typography>
+                    <Typography paragraph>What is a Traumatic Brain Injury?</Typography>
                     <Typography paragraph>
                       PTSD can occur after witnessing or experiencing a
                       traumatic event. For veterans, this can stem from combat,
