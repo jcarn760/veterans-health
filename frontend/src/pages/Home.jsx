@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import Icon from "@mui/material/Icon";
+
 import {
   LinearProgress,
   Typography,
@@ -22,6 +24,7 @@ import {
   Grid,
   Container,
   Divider,
+  ButtonBase,
 } from "@mui/material";
 import Fab from "@mui/material/Fab";
 import VeteranPic from "../assets/Dashboard/veteran.webp";
@@ -170,10 +173,84 @@ export const Home = () => {
             />
           </Box>
         </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 3,
+          }}
+        >
+          <ButtonBase
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "linear-gradient(to left, #E1FAF6, #91C7DB)",
+              width: 250,
+              height: 120,
+              boxShadow: 1,
+              borderRadius: 2,
+              mb: 3,
+              mt: 2,
+            }}
+          >
+            <Icon>add_circle</Icon>
+            <Typography>Add Exercise</Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "linear-gradient(to right, #E1FAF6, #91C7DB)",
+              width: 250,
+              height: 120,
+              boxShadow: 1,
+              borderRadius: 2,
+              mb: 3,
+              mt: 2,
+            }}
+          >
+            <Icon>message</Icon>
+            <Typography>Message of the Day</Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "linear-gradient(to top, #E1FAF6, #91C7DB)",
+              width: 250,
+              height: 120,
+              boxShadow: 1,
+              borderRadius: 2,
+              mb: 3,
+              mt: 2,
+            }}
+          >
+            <Typography>
+              <b>Text/Call 998</b>
+            </Typography>
+            <Typography>Suicide Prevention Number</Typography>
+          </ButtonBase>
+        </Box>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid item xs={6}>
-            <Box sx={{ position: "relative", m: 8 }}>
+            <Box
+              sx={{
+                position: "relative",
+                m: 8,
+                // background: "linear-gradient(to left, #fff, #E1FAF6,#91C7DB)",
+                // bgcolor: "background.paper",
+                boxShadow: 3,
+                borderRadius: 2,
+              }}
+            >
               <Typography variant="h5" sx={{ textAlign: "center", pb: 7 }}>
                 Your Last Workouts
               </Typography>
@@ -185,7 +262,7 @@ export const Home = () => {
               >
                 <AddIcon />
               </Fab>
-              <TableContainer component={Paper}>
+              <TableContainer sx={{}} component={Paper}>
                 <Table aria-label="workout table">
                   <TableHead>
                     <TableRow>
