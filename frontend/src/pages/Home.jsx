@@ -42,7 +42,7 @@ import { Amplify } from "aws-amplify";
 import { generateClient } from "aws-amplify/api";
 import awsExports from "../aws-exports";
 import config from "../amplifyconfiguration.json";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   createWorkout,
   updateWorkout,
@@ -81,6 +81,8 @@ export const Home = () => {
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   //Get data from DB
   useEffect(() => {
@@ -176,7 +178,7 @@ export const Home = () => {
             </Typography>
             <Button
               variant="contained"
-              // onClick={() => navigate("/veteran_profile")}
+              onClick={() => navigate("/veteran_profile")}
             >
               Update Your Profile!
             </Button>
