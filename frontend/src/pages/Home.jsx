@@ -264,8 +264,8 @@ export const Home = () => {
           sx={{
             position: "relative",
             m: 8,
-            // background: "linear-gradient(to left, #fff, #E1FAF6,#91C7DB)",
-            // bgcolor: "background.paper",
+            background: "linear-gradient(to right, #fff, #E1FAF6,#91C7DB)",
+            bgcolor: "background.paper",
             boxShadow: 3,
             borderRadius: 2,
           }}
@@ -274,7 +274,12 @@ export const Home = () => {
             Your Last Workouts
           </Typography>
 
-          <TableContainer sx={{ width: 700 }} component={Paper}>
+          <TableContainer
+            sx={{
+              width: 800,
+              background: "linear-gradient(to bottom, #E1FAF6, #91C7DB)",
+            }}
+          >
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>
@@ -338,88 +343,6 @@ export const Home = () => {
           </Grid> */}
 
         <Grid item xs={8}></Grid>
-        <Modal
-          open={modalOpen}
-          onClose={handleModalClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 400,
-              bgcolor: "background.paper",
-              background: "linear-gradient(to bottom, #E1FAF6, #91C7DB)",
-              boxShadow: 24,
-              borderRadius: 5,
-              p: 4,
-            }}
-          >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Add Workout
-            </Typography>
-            <TextField
-              label="Workout Name"
-              variant="outlined"
-              fullWidth
-              value={workoutName}
-              onChange={(e) => setWorkoutName(e.target.value)}
-              sx={{ mt: 2 }}
-            />
-            <TextField
-              label="Workout Repetitions"
-              variant="outlined"
-              fullWidth
-              value={workoutReps}
-              onChange={(e) => setWorkoutReps(e.target.value)}
-              sx={{ mt: 2 }}
-            />
-            <TextField
-              label="Workout Time"
-              variant="outlined"
-              fullWidth
-              value={workoutTime}
-              onChange={(e) => setWorkoutTime(e.target.value)}
-              sx={{ mt: 2 }}
-            />
-            <FormControl component="fieldset" sx={{ mt: 2 }}>
-              <FormLabel component="legend">How are you feeling?</FormLabel>
-              <RadioGroup
-                row
-                aria-label="feeling"
-                name="row-radio-buttons-group"
-                value={feeling}
-                onChange={(e) => setFeeling(e.target.value)}
-              >
-                <FormControlLabel
-                  value="Amazing"
-                  control={<Radio />}
-                  label="Amazing"
-                />
-                <FormControlLabel
-                  value="Okay"
-                  control={<Radio />}
-                  label="Okay"
-                />
-                <FormControlLabel
-                  value="Tired"
-                  control={<Radio />}
-                  label="Tired"
-                />
-              </RadioGroup>
-            </FormControl>
-            <Button
-              variant="contained"
-              onClick={handleWorkoutSubmit}
-              sx={{ mt: 2 }}
-            >
-              Submit
-            </Button>
-          </Box>
-        </Modal>
         <Modal
           open={modalOpen}
           onClose={handleModalClose}
