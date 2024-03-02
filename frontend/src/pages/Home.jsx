@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Icon from "@mui/material/Icon";
+import { useNavigate } from "react-router-dom";
 
 import {
   LinearProgress,
@@ -41,7 +42,7 @@ import {
   updateWorkout,
   deleteWorkout,
 } from "../graphql/mutations";
-import { listWorkouts } from "../graphql/queries";
+import { getUser, listWorkouts } from "../graphql/queries";
 import { Flex } from "@aws-amplify/ui-react";
 Amplify.configure(awsExports);
 Amplify.configure(config);
@@ -70,6 +71,9 @@ export const Home = () => {
   const [workoutReps, setWorkoutReps] = useState("");
   const [workoutTime, setWorkoutTime] = useState("");
   const [feeling, setFeeling] = useState("Amazing");
+
+  const navigate = useNavigate();
+
   //Get data from DB
   useEffect(() => {
     const handleWorkoutDisplay = async () => {
@@ -140,7 +144,7 @@ export const Home = () => {
             mt: 2,
           }}
         >
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }} pl="5%">
             <Typography variant="h6" sx={{ m: 1 }}>
               Hello, {"Users_name"}
             </Typography>
@@ -151,6 +155,9 @@ export const Home = () => {
             <Typography variant="body1" sx={{ m: 1 }}>
               Have a nice day and don't forget to take care of your health!
             </Typography>
+            <Button variant="contained" onClick={() => navigate('/veteran_profile')}>
+              Update Your Profile!
+            </Button>
           </Box>
           <Box
             sx={{
