@@ -162,7 +162,7 @@ export const Home = () => {
             mt: 2,
           }}
         >
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }} pl="5%">
             <Typography variant="h6" sx={{ m: 1 }}>
               Hello, {getUser}
             </Typography>
@@ -173,6 +173,12 @@ export const Home = () => {
             <Typography variant="body1" sx={{ m: 1 }}>
               Have a nice day and don't forget to take care of your health!
             </Typography>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/veteran_profile")}
+            >
+              Update Your Profile!
+            </Button>
           </Box>
           <Box
             sx={{
