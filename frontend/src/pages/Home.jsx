@@ -155,7 +155,10 @@ export const Home = () => {
             <Typography variant="body1" sx={{ m: 1 }}>
               Have a nice day and don't forget to take care of your health!
             </Typography>
-            <Button variant="contained" onClick={() => navigate('/veteran_profile')}>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/veteran_profile")}
+            >
               Update Your Profile!
             </Button>
           </Box>
