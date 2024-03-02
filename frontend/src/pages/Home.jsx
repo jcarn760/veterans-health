@@ -42,6 +42,7 @@ import { Amplify } from "aws-amplify";
 import { generateClient } from "aws-amplify/api";
 import awsExports from "../aws-exports";
 import config from "../amplifyconfiguration.json";
+import Navigation from "@mui/icons-material/Navigation";
 import {
   createWorkout,
   updateWorkout,
@@ -52,7 +53,7 @@ import { Flex } from "@aws-amplify/ui-react";
 Amplify.configure(awsExports);
 Amplify.configure(config);
 const client = generateClient();
-
+const navigate = Navigation;
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
