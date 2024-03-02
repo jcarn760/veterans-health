@@ -1,7 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Icon from "@mui/material/Icon";
-
+import UpcomingOutlinedIcon from "@mui/icons-material/UpcomingOutlined";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
   LinearProgress,
   Typography,
@@ -25,6 +29,8 @@ import {
   Container,
   Divider,
   ButtonBase,
+  Collapse,
+  IconButton,
 } from "@mui/material";
 import Fab from "@mui/material/Fab";
 import VeteranPic from "../assets/Dashboard/veteran.webp";
@@ -41,7 +47,7 @@ import {
   updateWorkout,
   deleteWorkout,
 } from "../graphql/mutations";
-import { listWorkouts } from "../graphql/queries";
+import { listWorkouts, listUsers, getWorkout } from "../graphql/queries";
 import { Flex } from "@aws-amplify/ui-react";
 Amplify.configure(awsExports);
 Amplify.configure(config);
@@ -64,14 +70,32 @@ function LinearProgressWithLabel(props) {
 
 export const Home = () => {
   const [progress, setProgress] = React.useState(10);
+  const [getUser, setGeUser] = useState("");
   const [getWorkouts, setGetWorkout] = useState([]);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [workoutName, setWorkoutName] = useState("");
   const [workoutReps, setWorkoutReps] = useState("");
   const [workoutTime, setWorkoutTime] = useState("");
   const [feeling, setFeeling] = useState("Amazing");
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+  const [open, setOpen] = useState(false);
+
   //Get data from DB
   useEffect(() => {
+    //UserData
+    const handleUserDisplay = async () => {
+      try {
+        const result = await client.graphql({ query: listUsers });
+        console.log("List User");
+        console.log(result.data.listUsers.items[0].first_name);
+        setGeUser(result.data.listUsers.items[0].first_name);
+      } catch (error) {
+        console.error("Error adding todo", error);
+      }
+    };
+
+    // Workout Data
     const handleWorkoutDisplay = async () => {
       try {
         const result = await client.graphql({ query: listWorkouts });
@@ -83,10 +107,8 @@ export const Home = () => {
       }
     };
     handleWorkoutDisplay();
-  }, []);
-
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
+    handleUserDisplay();
+  }, [workoutName]);
 
   //Submit data to the DB
   const handleWorkoutSubmit = async () => {
@@ -142,7 +164,7 @@ export const Home = () => {
         >
           <Box sx={{ flexGrow: 1 }}>
             <Typography variant="h6" sx={{ m: 1 }}>
-              Hello, {"Users_name"}
+              Hello, {getUser}
             </Typography>
             {/* <Box sx={{ display: "flex", justifyContent: "center" }}>
               <LinearProgressWithLabel value={progress} sx={{ width: "50%" }} />
@@ -182,6 +204,7 @@ export const Home = () => {
           }}
         >
           <ButtonBase
+            onClick={handleModalOpen}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -196,8 +219,8 @@ export const Home = () => {
               mt: 2,
             }}
           >
-            <Icon>add_circle</Icon>
-            <Typography>Add Exercise</Typography>
+            <AddCircleOutlinedIcon />
+            <Typography sx={{ m: 2 }}>Add Exercise</Typography>
           </ButtonBase>
           <ButtonBase
             sx={{
@@ -214,8 +237,8 @@ export const Home = () => {
               mt: 2,
             }}
           >
-            <Icon>message</Icon>
-            <Typography>Message of the Day</Typography>
+            <UpcomingOutlinedIcon />
+            <Typography sx={{ m: 2 }}>Workout of the Day</Typography>
           </ButtonBase>
           <ButtonBase
             sx={{
@@ -232,152 +255,253 @@ export const Home = () => {
               mt: 2,
             }}
           >
-            <Typography>
-              <b>Text/Call 998</b>
-            </Typography>
-            <Typography>Suicide Prevention Number</Typography>
+            <PhoneOutlinedIcon />
+            <Typography sx={{ m: 2 }}>Suicide Prevention Number</Typography>
           </ButtonBase>
         </Box>
 
-        <Grid container spacing={1}>
-          <Grid item xs={6}>
-            <Box
-              sx={{
-                position: "relative",
-                m: 8,
-                // background: "linear-gradient(to left, #fff, #E1FAF6,#91C7DB)",
-                // bgcolor: "background.paper",
-                boxShadow: 3,
-                borderRadius: 2,
-              }}
-            >
-              <Typography variant="h5" sx={{ textAlign: "center", pb: 7 }}>
-                Your Last Workouts
-              </Typography>
-              <Fab
-                color="primary"
-                aria-label="add"
-                onClick={handleModalOpen}
-                sx={{ position: "absolute", top: 25, right: 0 }}
-              >
-                <AddIcon />
-              </Fab>
-              <TableContainer sx={{}} component={Paper}>
-                <Table aria-label="workout table">
-                  <TableHead>
+        <Box
+          sx={{
+            position: "relative",
+            m: 8,
+            // background: "linear-gradient(to left, #fff, #E1FAF6,#91C7DB)",
+            // bgcolor: "background.paper",
+            boxShadow: 3,
+            borderRadius: 2,
+          }}
+        >
+          <Typography variant="h5" sx={{ textAlign: "center", pb: 7 }}>
+            Your Last Workouts
+          </Typography>
+
+          <TableContainer sx={{ width: 700 }} component={Paper}>
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow>
+                  <TableCell />
+                  <TableCell>Workout Name</TableCell>
+                  <TableCell align="right">Feeling</TableCell>
+                  <TableCell align="right">Date</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {getWorkouts.map((getWorkout, index) => (
+                  <React.Fragment key={index}>
                     <TableRow>
-                      <TableCell>Workout Name</TableCell>
-                      <TableCell align="right">Feeling</TableCell>
-                      <TableCell align="right">Date</TableCell>
+                      <TableCell>
+                        <IconButton
+                          aria-label="expand row"
+                          size="small"
+                          onClick={() => setOpen(!open)}
+                        >
+                          {open ? (
+                            <KeyboardArrowUpIcon />
+                          ) : (
+                            <KeyboardArrowDownIcon />
+                          )}
+                        </IconButton>
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {getWorkout.workout_name}
+                      </TableCell>
+                      <TableCell align="right">{getWorkout.feel}</TableCell>
+                      <TableCell align="right">
+                        {getWorkout.createdAt}
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {getWorkouts.map((getWorkout, index) => (
-                      <TableRow key={index}>
-                        <TableCell component="th" scope="row">
-                          {getWorkout.workout_name}
-                        </TableCell>
-                        <TableCell align="right">{getWorkout.feel}</TableCell>
-                        <TableCell align="right">
-                          {getWorkout.createdAt}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Box>
-          </Grid>
-          <Grid item xs={5}>
+                    <TableRow>
+                      <TableCell
+                        style={{ paddingBottom: 0, paddingTop: 0 }}
+                        colSpan={6}
+                      >
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                          <div style={{ margin: 20 }}>
+                            {/* Add your collapsible content here */}
+                            <p>Details about the workout...</p>
+                          </div>
+                        </Collapse>
+                      </TableCell>
+                    </TableRow>
+                  </React.Fragment>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+
+        {/* <Grid item xs={5}>
             <Box sx={{ position: "relative", m: 8 }}>
               <Typography variant="h5" sx={{ textAlign: "center", pb: 7 }}>
                 Exercise of the Day
               </Typography>
             </Box>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={8}></Grid>
-          <Modal
-            open={modalOpen}
-            onClose={handleModalClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+        <Grid item xs={8}></Grid>
+        <Modal
+          open={modalOpen}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              background: "linear-gradient(to bottom, #E1FAF6, #91C7DB)",
+              boxShadow: 24,
+              borderRadius: 5,
+              p: 4,
+            }}
           >
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 400,
-                bgcolor: "background.paper",
-                boxShadow: 24,
-                p: 4,
-              }}
-            >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Add Workout
-              </Typography>
-              <TextField
-                label="Workout Name"
-                variant="outlined"
-                fullWidth
-                value={workoutName}
-                onChange={(e) => setWorkoutName(e.target.value)}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                label="Workout Repetitions"
-                variant="outlined"
-                fullWidth
-                value={workoutReps}
-                onChange={(e) => setWorkoutReps(e.target.value)}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                label="Workout Time"
-                variant="outlined"
-                fullWidth
-                value={workoutTime}
-                onChange={(e) => setWorkoutTime(e.target.value)}
-                sx={{ mt: 2 }}
-              />
-              <FormControl component="fieldset" sx={{ mt: 2 }}>
-                <FormLabel component="legend">How are you feeling?</FormLabel>
-                <RadioGroup
-                  row
-                  aria-label="feeling"
-                  name="row-radio-buttons-group"
-                  value={feeling}
-                  onChange={(e) => setFeeling(e.target.value)}
-                >
-                  <FormControlLabel
-                    value="Amazing"
-                    control={<Radio />}
-                    label="Amazing"
-                  />
-                  <FormControlLabel
-                    value="Okay"
-                    control={<Radio />}
-                    label="Okay"
-                  />
-                  <FormControlLabel
-                    value="Tired"
-                    control={<Radio />}
-                    label="Tired"
-                  />
-                </RadioGroup>
-              </FormControl>
-              <Button
-                variant="contained"
-                onClick={handleWorkoutSubmit}
-                sx={{ mt: 2 }}
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Add Workout
+            </Typography>
+            <TextField
+              label="Workout Name"
+              variant="outlined"
+              fullWidth
+              value={workoutName}
+              onChange={(e) => setWorkoutName(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Repetitions"
+              variant="outlined"
+              fullWidth
+              value={workoutReps}
+              onChange={(e) => setWorkoutReps(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Time"
+              variant="outlined"
+              fullWidth
+              value={workoutTime}
+              onChange={(e) => setWorkoutTime(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <FormControl component="fieldset" sx={{ mt: 2 }}>
+              <FormLabel component="legend">How are you feeling?</FormLabel>
+              <RadioGroup
+                row
+                aria-label="feeling"
+                name="row-radio-buttons-group"
+                value={feeling}
+                onChange={(e) => setFeeling(e.target.value)}
               >
-                Submit
-              </Button>
-            </Box>
-          </Modal>
-        </Grid>
+                <FormControlLabel
+                  value="Amazing"
+                  control={<Radio />}
+                  label="Amazing"
+                />
+                <FormControlLabel
+                  value="Okay"
+                  control={<Radio />}
+                  label="Okay"
+                />
+                <FormControlLabel
+                  value="Tired"
+                  control={<Radio />}
+                  label="Tired"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Button
+              variant="contained"
+              onClick={handleWorkoutSubmit}
+              sx={{ mt: 2 }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Modal>
+        <Modal
+          open={modalOpen}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              background: "linear-gradient(to bottom, #E1FAF6, #91C7DB)",
+              boxShadow: 24,
+              borderRadius: 5,
+              p: 4,
+            }}
+          >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Add Workout
+            </Typography>
+            <TextField
+              label="Workout Name"
+              variant="outlined"
+              fullWidth
+              value={workoutName}
+              onChange={(e) => setWorkoutName(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Repetitions"
+              variant="outlined"
+              fullWidth
+              value={workoutReps}
+              onChange={(e) => setWorkoutReps(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              label="Workout Time"
+              variant="outlined"
+              fullWidth
+              value={workoutTime}
+              onChange={(e) => setWorkoutTime(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <FormControl component="fieldset" sx={{ mt: 2 }}>
+              <FormLabel component="legend">How are you feeling?</FormLabel>
+              <RadioGroup
+                row
+                aria-label="feeling"
+                name="row-radio-buttons-group"
+                value={feeling}
+                onChange={(e) => setFeeling(e.target.value)}
+              >
+                <FormControlLabel
+                  value="Amazing"
+                  control={<Radio />}
+                  label="Amazing"
+                />
+                <FormControlLabel
+                  value="Okay"
+                  control={<Radio />}
+                  label="Okay"
+                />
+                <FormControlLabel
+                  value="Tired"
+                  control={<Radio />}
+                  label="Tired"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Button
+              variant="contained"
+              onClick={handleWorkoutSubmit}
+              sx={{ mt: 2 }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Modal>
       </Container>
     </>
   );
