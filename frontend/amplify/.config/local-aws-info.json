@@ -3,5 +3,10 @@
     "configLevel": "project",
     "useProfile": true,
     "profileName": "jaycarn-amplify"
+  },
+  "vethealth": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/rogerrivl.dev/.amplify/awscloudformation/Vemf8v3uCm"
   }
 }

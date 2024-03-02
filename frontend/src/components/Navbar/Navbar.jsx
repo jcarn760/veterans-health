@@ -17,6 +17,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import Stack from "@mui/material/Stack";
@@ -118,6 +119,19 @@ export default function ClippedDrawer({ signOut }) {
                     <FeedbackIcon />
                   </ListItemIcon>
                   <ListItemText primary="Feedback" />
+                </ListItemButton>
+              </ListItem>
+            </RouterLink>
+            <RouterLink
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/veteran_profile"
+            >
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
                 </ListItemButton>
               </ListItem>
             </RouterLink>

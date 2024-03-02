@@ -1,0 +1,319 @@
+type User @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  first_name: String
+  last_name: String
+  date_birth: AWSDate
+  height: Float
+  weigth: Float
+  gender: String
+  health_goal: String
+  profile: Boolean
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Workout @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  workout_name: String!
+  feel: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelUserConnection @aws_iam @aws_cognito_user_pools {
+  items: [User]!
+  nextToken: String
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  first_name: ModelStringInput
+  last_name: ModelStringInput
+  date_birth: ModelStringInput
+  height: ModelFloatInput
+  weigth: ModelFloatInput
+  gender: ModelStringInput
+  health_goal: ModelStringInput
+  profile: ModelBooleanInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+type Query {
+  getUser(id: ID!): User @aws_iam @aws_cognito_user_pools
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_iam @aws_cognito_user_pools
+  getWorkout(id: ID!): Workout @aws_iam @aws_cognito_user_pools
+  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection @aws_iam @aws_cognito_user_pools
+}
+
+input ModelUserConditionInput {
+  first_name: ModelStringInput
+  last_name: ModelStringInput
+  date_birth: ModelStringInput
+  height: ModelFloatInput
+  weigth: ModelFloatInput
+  gender: ModelStringInput
+  health_goal: ModelStringInput
+  profile: ModelBooleanInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+input CreateUserInput {
+  id: ID
+  first_name: String
+  last_name: String
+  date_birth: AWSDate
+  height: Float
+  weigth: Float
+  gender: String
+  health_goal: String
+  profile: Boolean
+}
+
+input UpdateUserInput {
+  id: ID!
+  first_name: String
+  last_name: String
+  date_birth: AWSDate
+  height: Float
+  weigth: Float
+  gender: String
+  health_goal: String
+  profile: Boolean
+}
+
+input DeleteUserInput {
+  id: ID!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User @aws_iam @aws_cognito_user_pools
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User @aws_iam @aws_cognito_user_pools
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User @aws_iam @aws_cognito_user_pools
+  createWorkout(input: CreateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_iam @aws_cognito_user_pools
+  updateWorkout(input: UpdateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_iam @aws_cognito_user_pools
+  deleteWorkout(input: DeleteWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionUserFilterInput {
+  id: ModelSubscriptionIDInput
+  first_name: ModelSubscriptionStringInput
+  last_name: ModelSubscriptionStringInput
+  date_birth: ModelSubscriptionStringInput
+  height: ModelSubscriptionFloatInput
+  weigth: ModelSubscriptionFloatInput
+  gender: ModelSubscriptionStringInput
+  health_goal: ModelSubscriptionStringInput
+  profile: ModelSubscriptionBooleanInput
+  and: [ModelSubscriptionUserFilterInput]
+  or: [ModelSubscriptionUserFilterInput]
+}
+
+type Subscription {
+  onCreateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["createUser"]) @aws_iam @aws_cognito_user_pools
+  onUpdateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["updateUser"]) @aws_iam @aws_cognito_user_pools
+  onDeleteUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["deleteUser"]) @aws_iam @aws_cognito_user_pools
+  onCreateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["createWorkout"]) @aws_iam @aws_cognito_user_pools
+  onUpdateWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["updateWorkout"]) @aws_iam @aws_cognito_user_pools
+  onDeleteWorkout(filter: ModelSubscriptionWorkoutFilterInput, owner: String): Workout @aws_subscribe(mutations: ["deleteWorkout"]) @aws_iam @aws_cognito_user_pools
+}
+
+type ModelWorkoutConnection @aws_iam @aws_cognito_user_pools {
+  items: [Workout]!
+  nextToken: String
+}
+
+input ModelWorkoutFilterInput {
+  id: ModelIDInput
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutFilterInput]
+  or: [ModelWorkoutFilterInput]
+  not: ModelWorkoutFilterInput
+}
+
+input ModelWorkoutConditionInput {
+  workout_name: ModelStringInput
+  feel: ModelStringInput
+  and: [ModelWorkoutConditionInput]
+  or: [ModelWorkoutConditionInput]
+  not: ModelWorkoutConditionInput
+}
+
+input CreateWorkoutInput {
+  id: ID
+  workout_name: String!
+  feel: String!
+}
+
+input UpdateWorkoutInput {
+  id: ID!
+  workout_name: String
+  feel: String
+}
+
+input DeleteWorkoutInput {
+  id: ID!
+}
+
+input ModelSubscriptionWorkoutFilterInput {
+  id: ModelSubscriptionIDInput
+  workout_name: ModelSubscriptionStringInput
+  feel: ModelSubscriptionStringInput
+  and: [ModelSubscriptionWorkoutFilterInput]
+  or: [ModelSubscriptionWorkoutFilterInput]
+}
