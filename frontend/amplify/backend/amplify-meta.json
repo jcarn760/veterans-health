@@ -36,18 +36,10 @@
               "userPoolId": "authveteranhealth854bf56a"
             }
           }
-        },
-        "GraphQLAPIIdOutput": "nvivlunmofe4zgmd2rhkuaxhtq",
-        "GraphQLAPIEndpointOutput": "https://zjqxwqlsmzcgxlfx2ao6l7oizi.appsync-api.us-east-1.amazonaws.com/graphql"
+        }
       },
       "providerPlugin": "awscloudformation",
-      "service": "AppSync",
-      "lastPushTimeStamp": "2024-02-28T19:24:56.286Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-        "logicalId": "apiveteranhealth"
-      },
-      "lastPushDirHash": "5NE2JtG2sIEnxwc11unXaQ/bDAQ="
+      "service": "AppSync"
     }
   },
   "auth": {
@@ -60,8 +52,8 @@
           "SMS"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
           "EMAIL"
@@ -75,21 +67,7 @@
         ]
       },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "output": {
-        "UserPoolId": "us-east-1_VrLQVkdnB",
-        "AppClientIDWeb": "5n73d2344podbad5dfff6e783g",
-        "AppClientID": "16isovf6l1sgttnq7pbmjjjif2",
-        "IdentityPoolId": "us-east-1:31bc8ad5-365d-4588-ae13-dfd89f8d166e",
-        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:074625186254:userpool/us-east-1_VrLQVkdnB",
-        "IdentityPoolName": "veteranhealth854bf56a_identitypool_854bf56a__vethealth",
-        "UserPoolName": "veteranhealth854bf56a_userpool_854bf56a"
-      },
-      "lastPushTimeStamp": "2024-02-28T19:24:54.450Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-veteranhealth-vethealth-162532-deployment/amplify-cfn-templates/auth/veteranhealth854bf56a-cloudformation-template.json",
-        "logicalId": "authveteranhealth854bf56a"
-      }
+      "service": "Cognito"
     }
   }
 }
