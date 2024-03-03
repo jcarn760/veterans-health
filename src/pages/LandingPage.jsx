@@ -22,6 +22,8 @@ export const LandingPage = ({ user }) => {
   const [results, setResults] = useState();
   const [profile, setProfile] = useState(false); //profile check
   const [email, setEmail] = useState();
+  const handleModalOpen = () => setOpenModal(true);
+  const handleModalClose = () => setOpenModal(false);
   const navigate = useNavigate();
 
   const client = generateClient();
@@ -52,10 +54,12 @@ export const LandingPage = ({ user }) => {
     if (email == undefined) {
       console.log("No signed in");
       console.log(email);
-      navigate("/"); // Redirect to Home page if profile is true
+      navigate("/home"); // Redirect to Home page if profile is true
     } else {
       // Open the modal if profile is false
       // navigate("/home");
+      handleModalOpen();
+      navigate("/")
     }
 
     async function handleFetchUserAttributes() {
