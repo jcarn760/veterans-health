@@ -235,7 +235,7 @@ export const LandingPage = ({ user }) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button type="submit" fullWidth variant="contained">
+                  <Button type="submit" fullWidth variant="contained" onClick={handleClose}>
                     Save Profile
                   </Button>
                 </Grid>
