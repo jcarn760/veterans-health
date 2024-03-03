@@ -24,7 +24,6 @@ Amplify.configure(config);
 
 const client = generateClient();
 
-Amplify.configure(awsExports);
 
 export const App = ({ signOut, user }) => {
   return (

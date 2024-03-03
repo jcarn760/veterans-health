@@ -48,8 +48,15 @@ import {
   updateWorkout,
   deleteWorkout,
 } from "../graphql/mutations";
-import { listWorkouts, listUsers, getWorkout } from "../graphql/queries";
+import {
+  listWorkouts,
+  listUsers,
+  getWorkout,
+  getUser,
+} from "../graphql/queries";
 import { Flex } from "@aws-amplify/ui-react";
+import { getCurrentUser } from "aws-amplify/auth";
+
 Amplify.configure(awsExports);
 Amplify.configure(config);
 const client = generateClient();
@@ -71,7 +78,7 @@ function LinearProgressWithLabel(props) {
 
 export const Home = () => {
   const [progress, setProgress] = React.useState(10);
-  const [getUser, setGeUser] = useState("");
+  const [fetchedUser, setFetchedUser] = useState("");
   const [getWorkouts, setGetWorkout] = useState([]);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [workoutName, setWorkoutName] = useState("");
@@ -87,16 +94,31 @@ export const Home = () => {
   //Get data from DB
   useEffect(() => {
     //UserData
-    const handleUserDisplay = async () => {
+    const fetchData = async () => {
       try {
-        const result = await client.graphql({ query: listUsers });
-        console.log("List User");
-        console.log(result.data.listUsers.items[0].first_name);
-        setGeUser(result.data.listUsers.items[0].first_name);
+        // Get the current authenticated user
+        const user = await getCurrentUser();
+        console.log(user.userId);
+        // Retrieve the user's ID from the user object
+        const userId = user && user.userId;
+
+        // Construct the GraphQL operation as an object
+        const graphqlOperationObject = {
+          query: getUser, // Assuming getUser is your GraphQL query
+          variables: { id: userId },
+        };
+
+        // Fetch user data using GraphQL query
+        const userDataResponse = await client.graphql(getUser, graphqlOperationObject );
+        console.log("user");
+        console.log(userDataResponse);
+        setFetchedUser(userDataResponse.data.getUser);
       } catch (error) {
-        console.error("Error adding todo", error);
+        console.error("Error fetching user data:", error);
       }
     };
+
+    fetchData();
 
     // Workout Data
     const handleWorkoutDisplay = async () => {
@@ -110,8 +132,8 @@ export const Home = () => {
       }
     };
     handleWorkoutDisplay();
-    handleUserDisplay();
-  }, [workoutName]);
+    fetchData();
+  }, [client, workoutName]);
 
   //Submit data to the DB
   const handleWorkoutSubmit = async () => {
@@ -167,7 +189,7 @@ export const Home = () => {
         >
           <Box sx={{ flexGrow: 1 }} pl="5%">
             <Typography variant="h6" sx={{ m: 1 }}>
-              Hello, {getUser}
+              Hello, {fetchedUser.first_name}
             </Typography>
             {/* <Box sx={{ display: "flex", justifyContent: "center" }}>
               <LinearProgressWithLabel value={progress} sx={{ width: "50%" }} />
