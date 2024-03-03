@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, Typography, Grid, Container, Divider,Box,Chip, Stack,capitalize } from '@mui/material';
 
-const Strenght = () => {
+const Strength = () => {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Strenght = () => {
   return (
     <Container>
       <Typography variant="h2" gutterBottom>
-        Strenght Exercises
+        Strength Exercises
       </Typography>
       <Typography variant="body1" gutterBottom  pb={3}>
       Plyometrics offer veterans numerous benefits, including enhanced physical performance, injury prevention, better cardiovascular health, effective weight management, mental health improvements, stronger bones, and improved coordination and balance. These exercises are valuable for maintaining overall fitness, mental well-being, and quality of life, but should be started with professional guidance to ensure safety and effectiveness.      </Typography>
@@ -68,4 +68,4 @@ const Strenght = () => {
   );
 };
 
-export default Strenght;
+export default Strength;

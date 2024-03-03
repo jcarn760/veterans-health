@@ -12,7 +12,7 @@ import Workouts from "./pages/Workouts/Workouts";
 import { LandingPage } from "./pages/LandingPage";
 import Cardio from "./pages/Workouts/Cardio";
 import Plyometrics from "./pages/Workouts/Plyometrics";
-import Strenght from "./pages/Workouts/Strenght";
+import Strength from "./pages/Workouts/Strength";
 import Stretching from "./pages/Workouts/Stretching";
 import { VeteranProfile } from "./pages/VeteranProfile";
 import { Authenticator } from "@aws-amplify/ui-react";
@@ -34,7 +34,7 @@ const ProtectedApp = ({ signOut, user }) => {
         <Route exact path="/workouts" element={<Workouts />} />
         <Route exact path="/cardio" element={<Cardio />} />
         <Route exact path="/plyometrics" element={<Plyometrics />} />
-        <Route exact path="/strenght" element={<Strenght />} />
+        <Route exact path="/strength" element={<Strength />} />
         <Route exact path="/stretching" element={<Stretching />} />
         <Route exact path="/veteran_profile" element={<VeteranProfile />} />
       </Routes>

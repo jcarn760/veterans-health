@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Box} from '@mui/material';
 import CardioImg from "../../assets/Workouts/Cardio.jpg"
 import PlyometricsImg from "../../assets/Workouts/Plyometrics.jpg"
-import StrenghtImg from "../../assets/Workouts/Strenght.jpg"
+import StrengthImg from "../../assets/Workouts/Strength.jpg"
 import StretchingImg from "../../assets/Workouts/Stretching.jpg"
 
 import { Lin, NavLink } from "react-router-dom";
@@ -54,18 +54,18 @@ const NavigateFunc = () => {
     <Card sx={{ maxWidth: 335 }}>
       <CardActionArea >
         
-      <NavLink to="/strenght" style={{ textDecoration: 'none' }}>
+      <NavLink to="/strength" style={{ textDecoration: 'none' }}>
        
         <CardMedia
           component="img"
           height="140"
-          image={StrenghtImg}
+          image={StrengthImg}
           alt="Cardio"
         />
        
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Strenght
+            Strength
           </Typography>
           <Typography variant="body2" color="text.secondary">
           Strength training offers veterans critical benefits like increased muscle mass, enhanced strength, improved bone density, better joint flexibility, weight management, reduced risk of injuries, and improved mental health. It's an essential component of a balanced fitness regimen, aiding in physical resilience and overall well-being. Starting with proper technique and gradually progressing is crucial for safety and effectiveness.
