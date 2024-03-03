@@ -1,0 +1,22 @@
+//Submit data to the DB
+const handleWorkoutSubmit = async () => {
+  console.log("Submitting workout:", { workout, feeling });
+  setWorkout("");
+  setFeeling("");
+  try {
+    const result = await client.graphql({
+      query: createWorkout,
+      variables: {
+        input: {
+          workout_name: workout,
+          feel: feeling,
+        },
+      },
+    });
+    console.log(result); // Process the result as needed
+  } catch (error) {
+    console.error("Error adding todo", error);
+  }
+};
+
+//Get Data from the DB.

@@ -1,0 +1,41 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-veteranhealth-dev-143511-authRole",
+      "UnauthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-dev-143511-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-dev-143511-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-veteranhealth-dev-143511-deployment",
+      "UnauthRoleName": "amplify-veteranhealth-dev-143511-unauthRole",
+      "StackName": "amplify-veteranhealth-dev-143511",
+      "StackId": "arn:aws:cloudformation:us-east-1:074625186254:stack/amplify-veteranhealth-dev-143511/a944e4b0-d282-11ee-b075-0ad3ee2a5b9d",
+      "AmplifyAppId": "d24jh08puhmfib"
+    },
+    "categories": {
+      "auth": {
+        "veteranhealth854bf56a": {}
+      }
+    }
+  },
+  "vethealth": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-veteranhealth-vethealth-162532-authRole",
+      "UnauthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-vethealth-162532-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-vethealth-162532-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-veteranhealth-vethealth-162532-deployment",
+      "UnauthRoleName": "amplify-veteranhealth-vethealth-162532-unauthRole",
+      "StackName": "amplify-veteranhealth-vethealth-162532",
+      "StackId": "arn:aws:cloudformation:us-east-1:074625186254:stack/amplify-veteranhealth-vethealth-162532/ca804ec0-d42c-11ee-a6c2-0e2dc1c286ef",
+      "AmplifyAppId": "d1paixasjqa2oq"
+    },
+    "categories": {
+      "auth": {
+        "veteranhealth854bf56a": {}
+      },
+      "api": {
+        "veteranhealth": {}
+      }
+    }
+  }
+}
