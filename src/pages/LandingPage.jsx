@@ -13,12 +13,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { createUser } from "../graphql/mutations";
+import { fetchUserAttributes } from "aws-amplify/auth";
+import { signUp } from "aws-amplify/auth";
+import { updateUserAttributes } from "aws-amplify/auth";
 
 export const LandingPage = ({ user }) => {
-  console.log("Users:", user);
   const [openModal, setOpenModal] = useState(false);
   const [results, setResults] = useState();
   const [profile, setProfile] = useState(false); //profile check
+  const [email, setEmail] = useState();
   const navigate = useNavigate();
 
   const client = generateClient();
@@ -45,48 +48,76 @@ export const LandingPage = ({ user }) => {
         console.error("Error adding todo", error);
       }
     };
-    if (results == undefined) {
-      console.log("No Profile- Undefined");
-      setOpenModal(true);
-      if (profile) {
-        navigate("/home"); // Redirect to Home page if profile is true
-      } else {
-        setOpenModal(true); // Open the modal if profile is false
-      }
+    console.log("Email", email);
+    if (email == undefined) {
+      console.log("No signed in");
+      console.log(email);
+      navigate("/"); // Redirect to Home page if profile is true
     } else {
-      console.log("Not Undefined");
+      // Open the modal if profile is false
+      // navigate("/home");
     }
+
+    async function handleFetchUserAttributes() {
+      try {
+        const userAttributes = await fetchUserAttributes();
+        console.log("Fetch User Atrributes");
+        console.log(userAttributes.name);
+        setEmail(userAttributes.name);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    handleFetchUserAttributes();
 
     handleProfile();
   }, [profile, navigate]);
   const handleClose = () => setOpenModal(false);
   // Add your form submit handler here
+
   const handleUserSubmit = async (event) => {
     event.preventDefault();
-    // Submit form logic here
     try {
-      const newUser = await client.graphql({
-        query: createUser,
-        variables: {
-          input: {
-            first_name: formData.first_name,
-            last_name: formData.last_name,
-            date_birth: formData.date_birth,
-            height: formData.height,
-            weigth: formData.weight,
-            gender: formData.gender,
-            health_goal: formData.health_goal,
-            profile: true,
-            profile_user: user,
-          },
+      const attributes = await updateUserAttributes({
+        userAttributes: {
+          "custom:Name": formData.first_name,
+          "custom:LastName": formData.last_name,
+          "custom:DOB": formData.date_birth,
+          "custom:Goals": formData.health_goal,
         },
       });
-      console.log(newUser); // Process the result as needed
-      navigate("/home");
+      // handle next steps
     } catch (error) {
-      console.error("Error adding todo", error);
+      console.log(error);
     }
   };
+
+  // const handleUserSubmit = async (event) => {
+  //   event.preventDefault();
+  //   // Submit form logic here
+  //   try {
+  //     const newUser = await client.graphql({
+  //       query: createUser,
+  //       variables: {
+  //         input: {
+  //           first_name: formData.first_name,
+  //           last_name: formData.last_name,
+  //           date_birth: formData.date_birth,
+  //           height: formData.height,
+  //           weigth: formData.weight,
+  //           gender: formData.gender,
+  //           health_goal: formData.health_goal,
+  //           profile: true,
+  //           profile_user: user,
+  //         },
+  //       },
+  //     });
+  //     console.log(newUser); // Process the result as needed
+  //     navigate("/home");
+  //   } catch (error) {
+  //     console.error("Error adding todo", error);
+  //   }
+  // };
 
   // Add your form change handler here
   const handleChange = (event) => {
@@ -113,6 +144,7 @@ export const LandingPage = ({ user }) => {
           alt="two people working out"
           style={{ borderRadius: "90px" }}
         />
+        <Button onClick={() => setOpenModal(true)}>Complete Profile</Button>
       </Stack>
       <Modal
         open={openModal}
