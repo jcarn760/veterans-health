@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { NavLink as useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import { listUsers } from "../graphql/queries";
@@ -28,11 +28,11 @@ export const LandingPage = ({ user }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
-    date_birth: "",
+    dob: "",
     height: "",
     weight: "",
     gender: "",
-    health_goal: "",
+    goal: "",
   });
 
   useEffect(() => {
@@ -51,20 +51,18 @@ export const LandingPage = ({ user }) => {
     if (email === undefined) {
       console.log("No signed in");
       console.log(email);
-      navigate("/home"); // Redirect to Home page if profile is true
+      navigate("/"); // Redirect to Home page if profile is true
     } else {
       // Open the modal if profile is false
       // navigate("/home");
-      handleModalOpen();
-      navigate("/")
     }
 
     async function handleFetchUserAttributes() {
       try {
         const userAttributes = await fetchUserAttributes();
         console.log("Fetch User Atrributes");
-        console.log(userAttributes.name);
-        setEmail(userAttributes.name);
+        console.log(userAttributes.first_name);
+        setEmail(userAttributes.first_name);
       } catch (error) {
         console.log(error);
       }
@@ -81,10 +79,13 @@ export const LandingPage = ({ user }) => {
     try {
       const attributes = await updateUserAttributes({
         userAttributes: {
-          "custom:Name": formData.first_name,
-          "custom:LastName": formData.last_name,
-          "custom:DOB": formData.date_birth,
-          "custom:Goals": formData.health_goal,
+          "first_name": formData.first_name,
+          "last_name": formData.last_name,
+          "date_of_birth": formData.date_of_birth,
+          "goal": formData.goal,
+          "height": formData.height,
+          "weight": formData.weight,
+          "gender": formData.gender,
         },
       });
       // handle next steps

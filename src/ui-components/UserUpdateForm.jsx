@@ -39,7 +39,6 @@ export default function UserUpdateForm(props) {
     gender: "",
     health_goal: "",
     profile: false,
-    profile_user: "",
   };
   const [first_name, setFirst_name] = React.useState(initialValues.first_name);
   const [last_name, setLast_name] = React.useState(initialValues.last_name);
@@ -51,9 +50,6 @@ export default function UserUpdateForm(props) {
     initialValues.health_goal
   );
   const [profile, setProfile] = React.useState(initialValues.profile);
-  const [profile_user, setProfile_user] = React.useState(
-    initialValues.profile_user
-  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -67,7 +63,6 @@ export default function UserUpdateForm(props) {
     setGender(cleanValues.gender);
     setHealth_goal(cleanValues.health_goal);
     setProfile(cleanValues.profile);
-    setProfile_user(cleanValues.profile_user);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -95,7 +90,6 @@ export default function UserUpdateForm(props) {
     gender: [],
     health_goal: [],
     profile: [],
-    profile_user: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -131,7 +125,6 @@ export default function UserUpdateForm(props) {
           gender: gender ?? null,
           health_goal: health_goal ?? null,
           profile: profile ?? null,
-          profile_user: profile_user ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -200,7 +193,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.first_name ?? value;
@@ -232,7 +224,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.last_name ?? value;
@@ -265,7 +256,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.date_birth ?? value;
@@ -301,7 +291,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.height ?? value;
@@ -337,7 +326,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.weigth ?? value;
@@ -369,7 +357,6 @@ export default function UserUpdateForm(props) {
               gender: value,
               health_goal,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.gender ?? value;
@@ -401,7 +388,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal: value,
               profile,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.health_goal ?? value;
@@ -433,7 +419,6 @@ export default function UserUpdateForm(props) {
               gender,
               health_goal,
               profile: value,
-              profile_user,
             };
             const result = onChange(modelFields);
             value = result?.profile ?? value;
@@ -448,38 +433,6 @@ export default function UserUpdateForm(props) {
         hasError={errors.profile?.hasError}
         {...getOverrideProps(overrides, "profile")}
       ></SwitchField>
-      <TextField
-        label="Profile user"
-        isRequired={false}
-        isReadOnly={false}
-        value={profile_user}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              first_name,
-              last_name,
-              date_birth,
-              height,
-              weigth,
-              gender,
-              health_goal,
-              profile,
-              profile_user: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.profile_user ?? value;
-          }
-          if (errors.profile_user?.hasError) {
-            runValidationTasks("profile_user", value);
-          }
-          setProfile_user(value);
-        }}
-        onBlur={() => runValidationTasks("profile_user", profile_user)}
-        errorMessage={errors.profile_user?.errorMessage}
-        hasError={errors.profile_user?.hasError}
-        {...getOverrideProps(overrides, "profile_user")}
-      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
