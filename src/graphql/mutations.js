@@ -16,6 +16,7 @@ export const createUser = /* GraphQL */ `
       gender
       health_goal
       profile
+      profile_user
       createdAt
       updatedAt
       __typename
@@ -37,6 +38,7 @@ export const updateUser = /* GraphQL */ `
       gender
       health_goal
       profile
+      profile_user
       createdAt
       updatedAt
       __typename
@@ -58,6 +60,7 @@ export const deleteUser = /* GraphQL */ `
       gender
       health_goal
       profile
+      profile_user
       createdAt
       updatedAt
       __typename

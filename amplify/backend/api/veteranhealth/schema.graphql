@@ -1,4 +1,4 @@
-type User @model @auth(rules: [{allow: private}]) {
+type User @model @auth(rules: [{ allow: private }]) {
   id: ID!
   first_name: String
   last_name: String
@@ -8,10 +8,11 @@ type User @model @auth(rules: [{allow: private}]) {
   gender: String
   health_goal: String
   profile: Boolean
+  profile_user: String
 }
 
-type Workout @model @auth(rules: [{allow: owner}]) {
+type Workout @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   workout_name: String!
   feel: String!
-} 
+}

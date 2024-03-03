@@ -30,6 +30,7 @@ export declare type UserCreateFormInputValues = {
     gender?: string;
     health_goal?: string;
     profile?: boolean;
+    profile_user?: string;
 };
 export declare type UserCreateFormValidationValues = {
     first_name?: ValidationFunction<string>;
@@ -40,6 +41,7 @@ export declare type UserCreateFormValidationValues = {
     gender?: ValidationFunction<string>;
     health_goal?: ValidationFunction<string>;
     profile?: ValidationFunction<boolean>;
+    profile_user?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserCreateFormOverridesProps = {
@@ -52,6 +54,7 @@ export declare type UserCreateFormOverridesProps = {
     gender?: PrimitiveOverrideProps<TextFieldProps>;
     health_goal?: PrimitiveOverrideProps<TextFieldProps>;
     profile?: PrimitiveOverrideProps<SwitchFieldProps>;
+    profile_user?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserCreateFormProps = React.PropsWithChildren<{
     overrides?: UserCreateFormOverridesProps | undefined | null;

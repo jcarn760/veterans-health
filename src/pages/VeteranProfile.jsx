@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -8,7 +8,7 @@ import {
   Grid,
 } from "@mui/material";
 import { createUser, updateUser, deleteWorkout } from "../graphql/mutations";
-import { listWorkouts } from "../graphql/queries";
+import { listWorkouts, listUsers } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
 
 const client = generateClient();
@@ -22,7 +22,7 @@ export const VeteranProfile = () => {
     gender: "",
     health_goal: "",
   });
-
+  const [getProfiles, setGetProfiles] = useState([]);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -35,7 +35,34 @@ export const VeteranProfile = () => {
     event.preventDefault();
     console.log(formData.first_name);
   };
+  //Get data from DB
+  useEffect(() => {
+    // Workout Data
+    const handleWorkoutDisplay = async () => {
+      try {
+        const result = await client.graphql({ query: listUsers });
+        console.log("List Workout");
+        console.log(result.data.listUsers.items);
+        setGetProfiles(result.data.listUsers.items);
+        if (result.data.listUsers.items.length > 0) {
+          const profileData = result.data.listUsers.items[0];
+          setFormData({
+            first_name: profileData.first_name || "",
+            last_name: profileData.last_name || "",
+            date_birth: profileData.date_birth || "",
+            height: profileData.height || "",
+            weight: profileData.weight || "",
+            gender: profileData.gender || "",
+            health_goal: profileData.health_goal || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error adding todo", error);
+      }
+    };
 
+    handleWorkoutDisplay();
+  }, []);
   //   Submit data to the DB
   const handleUserSubmit = async (event) => {
     console.log("Press Submit");
@@ -43,7 +70,7 @@ export const VeteranProfile = () => {
     console.log(formData);
     try {
       const newUser = await client.graphql({
-        query: createUser,
+        query: updateUser,
         variables: {
           input: {
             first_name: formData.first_name,
@@ -68,6 +95,7 @@ export const VeteranProfile = () => {
       <Typography variant="h4" gutterBottom>
         Profile
       </Typography>
+
       <Box
         component="form"
         noValidate
@@ -167,7 +195,7 @@ export const VeteranProfile = () => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained">
-              Save Profile
+              Update Profile
             </Button>
           </Grid>
         </Grid>

@@ -24,6 +24,7 @@ import "@aws-amplify/ui-react/styles.css";
 Amplify.configure(awsExports);
 
 const ProtectedApp = ({ signOut, user }) => {
+  // console.log(user);
   return (
     <>
       <ClippedDrawer signOut={signOut} />
@@ -36,7 +37,11 @@ const ProtectedApp = ({ signOut, user }) => {
         <Route exact path="/plyometrics" element={<Plyometrics />} />
         <Route exact path="/strenght" element={<Strenght />} />
         <Route exact path="/stretching" element={<Stretching />} />
-        <Route exact path="/veteran_profile" element={<VeteranProfile />} />
+        <Route
+          exact
+          path="/veteran_profile"
+          element={<VeteranProfile user={user} />}
+        />
       </Routes>
     </>
   );

@@ -109,7 +109,10 @@ export const Home = () => {
         };
 
         // Fetch user data using GraphQL query
-        const userDataResponse = await client.graphql(getUser, graphqlOperationObject );
+        const userDataResponse = await client.graphql(
+          getUser,
+          graphqlOperationObject
+        );
         console.log("user");
         console.log(userDataResponse);
         setFetchedUser(userDataResponse.data.getUser);
@@ -254,6 +257,7 @@ export const Home = () => {
             <Typography sx={{ m: 2 }}>Add Exercise</Typography>
           </ButtonBase>
           <ButtonBase
+            onClick={() => navigate("/mental_health")}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -269,7 +273,7 @@ export const Home = () => {
             }}
           >
             <UpcomingOutlinedIcon />
-            <Typography sx={{ m: 2 }}>Workout of the Day</Typography>
+            <Typography sx={{ m: 2 }}>Mental Health Resources</Typography>
           </ButtonBase>
           <ButtonBase
             sx={{
@@ -287,7 +291,10 @@ export const Home = () => {
             }}
           >
             <PhoneOutlinedIcon />
-            <Typography sx={{ m: 2 }}>Suicide Prevention Number</Typography>
+            <Typography sx={{ mt: 2 }}>Suicide Prevention</Typography>
+            <Typography sx={{}}>
+              Dial/Text <b>998</b>
+            </Typography>
           </ButtonBase>
         </Box>
 

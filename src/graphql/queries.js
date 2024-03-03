@@ -13,6 +13,7 @@ export const getUser = /* GraphQL */ `
       gender
       health_goal
       profile
+      profile_user
       createdAt
       updatedAt
       __typename
@@ -36,6 +37,7 @@ export const listUsers = /* GraphQL */ `
         gender
         health_goal
         profile
+        profile_user
         createdAt
         updatedAt
         __typename

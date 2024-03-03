@@ -24,8 +24,9 @@ Amplify.configure(config);
 
 const client = generateClient();
 
-
 export const App = ({ signOut, user }) => {
+  console.log("User ID");
+  console.log(user);
   return (
     <>
       <Routes>

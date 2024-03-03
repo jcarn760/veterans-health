@@ -37,5 +37,49 @@
         "veteranhealth": {}
       }
     }
+  },
+  "healthro": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-veteranhealth-healthro-221428-authRole",
+      "UnauthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-healthro-221428-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-healthro-221428-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-veteranhealth-healthro-221428-deployment",
+      "UnauthRoleName": "amplify-veteranhealth-healthro-221428-unauthRole",
+      "StackName": "amplify-veteranhealth-healthro-221428",
+      "StackId": "arn:aws:cloudformation:us-east-1:074625186254:stack/amplify-veteranhealth-healthro-221428/886f8f90-d914-11ee-9c94-0aff72070803",
+      "AmplifyAppId": "d1paixasjqa2oq"
+    },
+    "categories": {
+      "auth": {
+        "veteranhealth854bf56a": {},
+        "userPoolGroups": {}
+      },
+      "api": {
+        "veteranhealth": {}
+      }
+    }
+  },
+  "official": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-veteranhealth-official-03255-authRole",
+      "UnauthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-official-03255-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-official-03255-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-veteranhealth-official-03255-deployment",
+      "UnauthRoleName": "amplify-veteranhealth-official-03255-unauthRole",
+      "StackName": "amplify-veteranhealth-official-03255",
+      "StackId": "arn:aws:cloudformation:us-east-1:074625186254:stack/amplify-veteranhealth-official-03255/defbf430-d927-11ee-8cc5-122e9917db3b",
+      "AmplifyAppId": "d1paixasjqa2oq"
+    },
+    "categories": {
+      "auth": {
+        "veteranhealth854bf56a": {},
+        "userPoolGroups": {}
+      },
+      "api": {
+        "veteranhealth": {}
+      }
+    }
   }
 }
