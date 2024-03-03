@@ -32,7 +32,7 @@ export const LandingPage = ({ user }) => {
     height: "",
     weight: "",
     gender: "",
-    goal: "",
+    health_goal: "",
   });
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export const LandingPage = ({ user }) => {
           "first_name": formData.first_name,
           "last_name": formData.last_name,
           "date_of_birth": formData.date_of_birth,
-          "goal": formData.goal,
+          "health_goal": formData.health_goal,
           "height": formData.height,
           "weight": formData.weight,
           "gender": formData.gender,
