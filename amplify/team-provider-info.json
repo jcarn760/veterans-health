@@ -37,5 +37,26 @@
         "veteranhealth": {}
       }
     }
+  },
+  "deploydev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-veteranhealth-deploydev-90500-authRole",
+      "UnauthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-deploydev-90500-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::074625186254:role/amplify-veteranhealth-deploydev-90500-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-veteranhealth-deploydev-90500-deployment",
+      "UnauthRoleName": "amplify-veteranhealth-deploydev-90500-unauthRole",
+      "StackName": "amplify-veteranhealth-deploydev-90500",
+      "StackId": "arn:aws:cloudformation:us-east-1:074625186254:stack/amplify-veteranhealth-deploydev-90500/06a4da30-d967-11ee-9a34-0e9afd8dd44b",
+      "AmplifyAppId": "d1paixasjqa2oq"
+    },
+    "categories": {
+      "auth": {
+        "veteranhealth854bf56a": {}
+      },
+      "api": {
+        "veteranhealth": {}
+      }
+    }
   }
 }
