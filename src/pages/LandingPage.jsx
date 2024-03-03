@@ -2,9 +2,8 @@ import LogoImage from "../assets/LandingPage/logo.webp";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { NavLink as RouterLink, useNavigate } from "react-router-dom";
+import { NavLink as useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import { listUsers } from "../graphql/queries";
@@ -12,9 +11,7 @@ import { generateClient } from "aws-amplify/api";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { createUser } from "../graphql/mutations";
 import { fetchUserAttributes } from "aws-amplify/auth";
-import { signUp } from "aws-amplify/auth";
 import { updateUserAttributes } from "aws-amplify/auth";
 
 export const LandingPage = ({ user }) => {
@@ -51,7 +48,7 @@ export const LandingPage = ({ user }) => {
       }
     };
     console.log("Email", email);
-    if (email == undefined) {
+    if (email === undefined) {
       console.log("No signed in");
       console.log(email);
       navigate("/home"); // Redirect to Home page if profile is true
