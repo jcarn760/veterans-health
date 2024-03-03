@@ -6,10 +6,6 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "userPoolGroups": {
-      "adminusersGroupRole": "string",
-      "usersGroupRole": "string"
-    },
     "veteranhealth854bf56a": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",

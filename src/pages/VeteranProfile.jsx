@@ -10,7 +10,7 @@ import {
 import { createUser, updateUser, deleteWorkout } from "../graphql/mutations";
 import { listWorkouts, listUsers } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
-
+import { fetchUserAttributes } from "aws-amplify/auth";
 const client = generateClient();
 export const VeteranProfile = () => {
   const [formData, setFormData] = useState({
@@ -37,23 +37,24 @@ export const VeteranProfile = () => {
   };
   //Get data from DB
   useEffect(() => {
-    // Workout Data
-    const handleWorkoutDisplay = async () => {
+    // User Data
+
+    const handleFetchUserAttributes = async () => {
       try {
-        const result = await client.graphql({ query: listUsers });
-        console.log("List Workout");
-        console.log(result.data.listUsers.items);
-        setGetProfiles(result.data.listUsers.items);
-        if (result.data.listUsers.items.length > 0) {
-          const profileData = result.data.listUsers.items[0];
+        const userAttributes = await fetchUserAttributes();
+
+        // console.log(userAttributes["custom:Name"]);
+        setGetProfiles(userAttributes);
+        if (userAttributes) {
+          console.log(userAttributes);
           setFormData({
-            first_name: profileData.first_name || "",
-            last_name: profileData.last_name || "",
-            date_birth: profileData.date_birth || "",
-            height: profileData.height || "",
-            weight: profileData.weight || "",
-            gender: profileData.gender || "",
-            health_goal: profileData.health_goal || "",
+            first_name: userAttributes["custom:Name"] || "",
+            last_name: userAttributes["custom:LastName"] || "",
+            date_birth: userAttributes["custom:DOB"] || "", // Updated to match your attribute name
+            height: userAttributes.height || "",
+            weight: userAttributes.weight || "",
+            gender: userAttributes.gender || "",
+            health_goal: userAttributes["custom:Goals"] || "", // Updated to match your attribute name
           });
         }
       } catch (error) {
@@ -61,7 +62,7 @@ export const VeteranProfile = () => {
       }
     };
 
-    handleWorkoutDisplay();
+    handleFetchUserAttributes();
   }, []);
   //   Submit data to the DB
   const handleUserSubmit = async (event) => {
