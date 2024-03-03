@@ -79,13 +79,13 @@ export const LandingPage = ({ user }) => {
     try {
       const attributes = await updateUserAttributes({
         userAttributes: {
-          "first_name": formData.first_name,
-          "last_name": formData.last_name,
-          "date_of_birth": formData.date_of_birth,
-          "health_goal": formData.health_goal,
-          "height": formData.height,
-          "weight": formData.weight,
-          "gender": formData.gender,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          date_of_birth: formData.date_of_birth,
+          health_goal: formData.health_goal,
+          height: formData.height,
+          weight: formData.weight,
+          gender: formData.gender,
         },
       });
       // handle next steps
@@ -269,7 +269,12 @@ export const LandingPage = ({ user }) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button type="submit" fullWidth variant="contained" onClick={handleClose}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    onClick={handleClose}
+                  >
                     Save Profile
                   </Button>
                 </Grid>
