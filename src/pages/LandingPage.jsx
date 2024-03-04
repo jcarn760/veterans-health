@@ -29,17 +29,6 @@ export const LandingPage = () => {
         console.error("Error adding todo", error);
       }
     };
-    if (results == undefined) {
-      console.log("No Profile- Undefined");
-      setOpenModal(true);
-      if (profile) {
-        navigate("/home"); // Redirect to Home page if profile is true
-      } else {
-        setOpenModal(true); // Open the modal if profile is false
-      }
-    } else {
-      console.log("Not Undefined");
-    }
 
     handleProfile();
   }, [profile, navigate]);
